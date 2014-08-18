@@ -46,7 +46,7 @@ namespace DuiLib
 
 		// Determine the minimum size
 		SIZE szAvailable = { rc.right - rc.left, rc.bottom - rc.top };
-		if( m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsVisible() ) 
+		if( m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsVisible() )
 			szAvailable.cx += m_pHorizontalScrollBar->GetScrollRange();
 
 		int nAdjustables = 0;
@@ -102,7 +102,7 @@ namespace DuiLib
 				// Distribute remaining to last element (usually round-off left-overs)
 				if( iAdjustable == nAdjustables ) {
 					sz.cy = MAX(0, szRemaining.cy - rcPadding.bottom - cyFixedRemaining);
-				} 
+				}
 				if( sz.cy < pControl->GetMinHeight() ) sz.cy = pControl->GetMinHeight();
 				if( sz.cy > pControl->GetMaxHeight() ) sz.cy = pControl->GetMaxHeight();
 			}
@@ -259,19 +259,19 @@ namespace DuiLib
 	RECT CVerticalLayoutUI::GetThumbRect(bool bUseNew) const
 	{
 		if( (m_uButtonState & UISTATE_CAPTURED) != 0 && bUseNew) {
-			if( m_iSepHeight >= 0 ) 
-				return CDuiRect(m_rcNewPos.left, MAX(m_rcNewPos.bottom - m_iSepHeight, m_rcNewPos.top), 
+			if( m_iSepHeight >= 0 )
+				return CDuiRect(m_rcNewPos.left, MAX(m_rcNewPos.bottom - m_iSepHeight, m_rcNewPos.top),
 				m_rcNewPos.right, m_rcNewPos.bottom);
-			else 
-				return CDuiRect(m_rcNewPos.left, m_rcNewPos.top, m_rcNewPos.right, 
+			else
+				return CDuiRect(m_rcNewPos.left, m_rcNewPos.top, m_rcNewPos.right,
 				MIN(m_rcNewPos.top - m_iSepHeight, m_rcNewPos.bottom));
 		}
 		else {
-			if( m_iSepHeight >= 0 ) 
-				return CDuiRect(m_rcItem.left, MAX(m_rcItem.bottom - m_iSepHeight, m_rcItem.top), m_rcItem.right, 
+			if( m_iSepHeight >= 0 )
+				return CDuiRect(m_rcItem.left, MAX(m_rcItem.bottom - m_iSepHeight, m_rcItem.top), m_rcItem.right,
 				m_rcItem.bottom);
-			else 
-				return CDuiRect(m_rcItem.left, m_rcItem.top, m_rcItem.right, 
+			else
+				return CDuiRect(m_rcItem.left, m_rcItem.top, m_rcItem.right,
 				MIN(m_rcItem.top - m_iSepHeight, m_rcItem.bottom));
 
 		}

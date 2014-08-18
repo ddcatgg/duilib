@@ -189,7 +189,7 @@ void CMenuWnd::Init(CMenuElementUI* pOwner, STRINGorID xml, LPCTSTR pSkinType, P
     ::ShowWindow(m_hWnd, SW_SHOW);
 #if defined(WIN32) && !defined(UNDER_CE)
     ::SendMessage(hWndParent, WM_NCACTIVATE, TRUE, 0L);
-#endif	
+#endif
 }
 
 LPCTSTR CMenuWnd::GetWindowClassName() const
@@ -259,7 +259,7 @@ LRESULT CMenuWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			int cyFixed = 0;
 
 #if defined(WIN32) && !defined(UNDER_CE)
-			MONITORINFO oMonitor = {}; 
+			MONITORINFO oMonitor = {};
 			oMonitor.cbSize = sizeof(oMonitor);
 			::GetMonitorInfo(::MonitorFromWindow(*this, MONITOR_DEFAULTTOPRIMARY), &oMonitor);
 			CDuiRect rcWork = oMonitor.rcWork;
@@ -307,7 +307,7 @@ LRESULT CMenuWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 					bReachRight = rcPreWindow.left >= rcWindow.right;
 					bReachBottom = rcPreWindow.top >= rcWindow.bottom;
-					if( pContextMenu->GetHWND() == m_pOwner->GetManager()->GetPaintWindow() 
+					if( pContextMenu->GetHWND() == m_pOwner->GetManager()->GetPaintWindow()
 						||  bReachBottom || bReachRight )
 						break;
 				}
@@ -365,7 +365,7 @@ LRESULT CMenuWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 			m_pm.AttachDialog(pRoot);
 
 #if defined(WIN32) && !defined(UNDER_CE)
-			MONITORINFO oMonitor = {}; 
+			MONITORINFO oMonitor = {};
 			oMonitor.cbSize = sizeof(oMonitor);
 			::GetMonitorInfo(::MonitorFromWindow(*this, MONITOR_DEFAULTTOPRIMARY), &oMonitor);
 			CDuiRect rcWork = oMonitor.rcWork;
@@ -486,7 +486,7 @@ LPCTSTR CMenuElementUI::GetClass() const
 
 LPVOID CMenuElementUI::GetInterface(LPCTSTR pstrName)
 {
-    if( _tcsicmp(pstrName, kMenuElementUIInterfaceName) == 0 ) return static_cast<CMenuElementUI*>(this);    
+    if( _tcsicmp(pstrName, kMenuElementUIInterfaceName) == 0 ) return static_cast<CMenuElementUI*>(this);
     return CListContainerElementUI::GetInterface(pstrName);
 }
 
@@ -562,7 +562,7 @@ SIZE CMenuElementUI::EstimateSize(SIZE szAvailable)
 		RECT rcText = { 0, 0, MAX(szAvailable.cx, m_cxyFixed.cx), 9999 };
 		rcText.left += pInfo->rcTextPadding.left;
 		rcText.right -= pInfo->rcTextPadding.right;
-		if( pInfo->bShowHtml ) {   
+		if( pInfo->bShowHtml ) {
 			int nLinks = 0;
 			CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, iTextColor, NULL, NULL, nLinks, DT_CALCRECT | pInfo->uTextStyle);
 		}

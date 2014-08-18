@@ -123,10 +123,10 @@ namespace DuiLib
 	//************************************
 	// Method:    GetSelectedHotImage
 	// FullName:  COptionUI::GetSelectedHotImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   LPCTSTR
 	// Qualifier:
-	// Node:	  
+	// Node:
 	//************************************
 	LPCTSTR COptionUI::GetSelectedHotImage()
 	{
@@ -135,11 +135,11 @@ namespace DuiLib
 	//************************************
 	// Method:    SetSelectedHotImage
 	// FullName:  COptionUI::SetSelectedHotImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   void
 	// Qualifier:
 	// Parameter: LPCTSTR pStrImage
-	// Node:	  
+	// Node:
 	//************************************
 	void COptionUI::SetSelectedHotImage( LPCTSTR pStrImage )
 	{
@@ -161,11 +161,11 @@ namespace DuiLib
 	//************************************
 	// Method:    SetSelectedBkColor
 	// FullName:  COptionUI::SetSelectedBkColor
-	// Access:    public 
+	// Access:    public
 	// Returns:   void
 	// Qualifier:
 	// Parameter: DWORD dwBkColor
-	// Note:	  
+	// Note:
 	//************************************
 	void COptionUI::SetSelectedBkColor( DWORD dwBkColor )
 	{
@@ -175,10 +175,10 @@ namespace DuiLib
 	//************************************
 	// Method:    GetSelectBkColor
 	// FullName:  COptionUI::GetSelectBkColor
-	// Access:    public 
+	// Access:    public
 	// Returns:   DWORD
 	// Qualifier:
-	// Note:	  
+	// Note:
 	//************************************
 	DWORD COptionUI::GetSelectBkColor()
 	{
@@ -241,7 +241,7 @@ namespace DuiLib
 			else if(m_dwSelectedBkColor != 0) {
 				CRenderEngine::DrawColor(hDC, m_rcPaint, GetAdjustColor(m_dwSelectedBkColor));
 				return;
-			}	
+			}
 		}
 
 		CButtonUI::PaintStatusImage(hDC);

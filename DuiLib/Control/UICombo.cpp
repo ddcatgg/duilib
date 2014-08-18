@@ -69,7 +69,7 @@ void CComboWnd::Init(CComboUI* pOwner)
         rc.bottom = rcOwner.top;
         ::MapWindowRect(pOwner->GetManager()->GetPaintWindow(), HWND_DESKTOP, &rc);
     }
-    
+
     Create(pOwner->GetManager()->GetPaintWindow(), NULL, WS_POPUP, WS_EX_TOOLWINDOW, rc);
     // HACK: Don't deselect the parent's caption
     HWND hWndParent = m_hWnd;
@@ -116,7 +116,7 @@ LRESULT CComboWnd::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
             m_pLayout->Add(static_cast<CControlUI*>(m_pOwner->GetItemAt(i)));
         }
         m_pm.AttachDialog(m_pLayout);
-        
+
         return 0;
     }
     else if( uMsg == WM_CLOSE ) {
@@ -286,7 +286,7 @@ bool CComboUI::SetItemIndex(CControlUI* pControl, int iIndex)
     if( iOrginIndex == iIndex ) return true;
 
     IListItemUI* pSelectedListItem = NULL;
-    if( m_iCurSel >= 0 ) pSelectedListItem = 
+    if( m_iCurSel >= 0 ) pSelectedListItem =
         static_cast<IListItemUI*>(GetItemAt(m_iCurSel)->GetInterface(_T("ListItem")));
     if( !CContainerUI::SetItemIndex(pControl, iIndex) ) return false;
     int iMinIndex = min(iOrginIndex, iIndex);
@@ -305,7 +305,7 @@ bool CComboUI::SetItemIndex(CControlUI* pControl, int iIndex)
 bool CComboUI::Add(CControlUI* pControl)
 {
     IListItemUI* pListItem = static_cast<IListItemUI*>(pControl->GetInterface(_T("ListItem")));
-    if( pListItem != NULL ) 
+    if( pListItem != NULL )
     {
         pListItem->SetOwner(this);
         pListItem->SetIndex(m_items.GetSize());
@@ -392,11 +392,11 @@ void CComboUI::DoEvent(TEventUI& event)
         return;
     }
 
-    if( event.Type == UIEVENT_SETFOCUS ) 
+    if( event.Type == UIEVENT_SETFOCUS )
     {
         Invalidate();
     }
-    if( event.Type == UIEVENT_KILLFOCUS ) 
+    if( event.Type == UIEVENT_KILLFOCUS )
     {
         Invalidate();
     }
@@ -788,10 +788,10 @@ void CComboUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     if( _tcscmp(pstrName, _T("textpadding")) == 0 ) {
         RECT rcTextPadding = { 0 };
         LPTSTR pstr = NULL;
-        rcTextPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        rcTextPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-        rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-        rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+        rcTextPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        rcTextPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+        rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+        rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
         SetTextPadding(rcTextPadding);
     }
     else if( _tcscmp(pstrName, _T("normalimage")) == 0 ) SetNormalImage(pstrValue);
@@ -804,8 +804,8 @@ void CComboUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
 	{
 		SIZE szDropBoxSize = { 0 };
 		LPTSTR pstr = NULL;
-		szDropBoxSize.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-		szDropBoxSize.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
+		szDropBoxSize.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+		szDropBoxSize.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
 		SetDropBoxSize(szDropBoxSize);
 	}
     else if( _tcscmp(pstrName, _T("itemfont")) == 0 ) m_ListInfo.nFont = _ttoi(pstrValue);
@@ -826,10 +826,10 @@ void CComboUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     if( _tcscmp(pstrName, _T("itemtextpadding")) == 0 ) {
         RECT rcTextPadding = { 0 };
         LPTSTR pstr = NULL;
-        rcTextPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        rcTextPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-        rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-        rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+        rcTextPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        rcTextPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+        rcTextPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+        rcTextPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
         SetItemTextPadding(rcTextPadding);
     }
     else if( _tcscmp(pstrName, _T("itemtextcolor")) == 0 ) {

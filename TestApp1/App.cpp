@@ -51,7 +51,7 @@ public:
         return true;
     }
 
-    void OnPrepare() 
+    void OnPrepare()
     {
         CSliderUI* pSilder = static_cast<CSliderUI*>(m_pm.FindControl(_T("alpha_controlor")));
         if( pSilder ) pSilder->OnNotify += MakeDelegate(this, &CFrameWindowWnd::OnAlphaChanged);

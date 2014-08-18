@@ -29,7 +29,7 @@ public:
     SIZE GetDropBoxSize() const;
     void SetDropBoxSize(SIZE szDropBox);
 
-    int GetCurSel() const;  
+    int GetCurSel() const;
     bool SelectItem(int iIndex, bool bTakeFocus = false);
 
     bool SetItemIndex(CControlUI* pControl, int iIndex);
@@ -94,7 +94,7 @@ public:
     void SetPos(RECT rc);
     void DoEvent(TEventUI& event);
     void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
-    
+
     void DoPaint(HDC hDC, const RECT& rcPaint);
     void PaintText(HDC hDC);
     void PaintStatusImage(HDC hDC);

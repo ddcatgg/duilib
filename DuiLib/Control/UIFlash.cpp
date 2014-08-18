@@ -67,7 +67,7 @@ namespace DuiLib
 		{
 		case DISPID_FLASHEVENT_FLASHCALL:
 			{
-				if (pDispParams->cArgs != 1 || pDispParams->rgvarg[0].vt != VT_BSTR) 
+				if (pDispParams->cArgs != 1 || pDispParams->rgvarg[0].vt != VT_BSTR)
 					return E_INVALIDARG;
 				return this->FlashCall(pDispParams->rgvarg[0].bstrVal);
 			}
@@ -121,7 +121,7 @@ namespace DuiLib
 
 	ULONG STDMETHODCALLTYPE CFlashUI::AddRef( void )
 	{
-		::InterlockedIncrement(&m_dwRef); 
+		::InterlockedIncrement(&m_dwRef);
 		return m_dwRef;
 	}
 
@@ -245,7 +245,7 @@ namespace DuiLib
 		HRESULT hr=S_FALSE;
 		CComPtr<IConnectionPointContainer>  pCPC;
 		CComPtr<IConnectionPoint> pCP;
-		
+
 		hr=m_pFlash->QueryInterface(IID_IConnectionPointContainer,(void **)&pCPC);
 		if (FAILED(hr))
 			return hr;
@@ -261,7 +261,7 @@ namespace DuiLib
 		{
 			hr = pCP->Unadvise(m_dwCookie);
 		}
-		return hr; 
+		return hr;
 	}
 
 	void CFlashUI::SetAttribute( LPCTSTR pstrName, LPCTSTR pstrValue )

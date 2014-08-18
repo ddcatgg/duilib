@@ -27,13 +27,13 @@ public:
 		else if( msg.sType == _T("click") ) {
 			if( msg.pSender == m_pCloseBtn ) {
 				PostQuitMessage(0);
-				return; 
+				return;
 			}
-			else if( msg.pSender == m_pMinBtn ) { 
+			else if( msg.pSender == m_pMinBtn ) {
 				SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0); return; }
-			else if( msg.pSender == m_pMaxBtn ) { 
+			else if( msg.pSender == m_pMaxBtn ) {
 				SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); return; }
-			else if( msg.pSender == m_pRestoreBtn ) { 
+			else if( msg.pSender == m_pRestoreBtn ) {
 				SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0); return; }
 		}
 		else if(msg.sType==_T("selectchanged"))
@@ -135,7 +135,7 @@ public:
 		if( pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right \
 			&& pt.y >= rcCaption.top && pt.y < rcCaption.bottom ) {
 				CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
-				if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 && 
+				if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 &&
 					_tcscmp(pControl->GetClass(), _T("OptionUI")) != 0 &&
 					_tcscmp(pControl->GetClass(), _T("TextUI")) != 0 )
 					return HTCAPTION;

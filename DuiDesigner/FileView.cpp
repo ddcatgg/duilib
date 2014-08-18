@@ -258,7 +258,7 @@ void CFileView::LoadUITree(CString& strPath)
 
 	TiXmlDocument xmlDoc;
 	xmlDoc.LoadFile(StringConvertor::WideToAnsi(strPath));
-	
+
 	TiXmlElement* pRootElem = xmlDoc.RootElement();
 	HTREEITEM hRoot = m_wndFileView.InsertItem(CGlobalVariable::m_strProjectName, 0, 0, TVI_ROOT);
 	m_wndFileView.SetItemData(hRoot, INFO_PROJECT);

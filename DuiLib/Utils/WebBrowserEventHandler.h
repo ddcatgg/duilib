@@ -130,8 +130,8 @@ namespace DuiLib
 			return S_OK;
 		}
 
-		// 	virtual HRESULT STDMETHODCALLTYPE GetOverrideKeyPath( 
-		// 		/* [annotation][out] */ 
+		// 	virtual HRESULT STDMETHODCALLTYPE GetOverrideKeyPath(
+		// 		/* [annotation][out] */
 		// 		__deref_out  LPOLESTR *pchKey,
 		// 		/* [in] */ DWORD dw)
 		// 	{
@@ -139,7 +139,7 @@ namespace DuiLib
 		// 	}
 
 		// IDownloadManager
-		virtual HRESULT STDMETHODCALLTYPE Download( 
+		virtual HRESULT STDMETHODCALLTYPE Download(
 			/* [in] */ IMoniker *pmk,
 			/* [in] */ IBindCtx *pbc,
 			/* [in] */ DWORD dwBindVerb,

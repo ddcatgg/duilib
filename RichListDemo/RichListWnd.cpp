@@ -25,25 +25,25 @@ void CPage1::SetPaintMagager(CPaintManagerUI* pPaintMgr)
 void CPage1::OnClick(TNotifyUI& msg)
 {
 	if(msg.pSender->GetName() == _T("down_ico"))
-	{                
+	{
 		CControlUI *find_ctrl =m_pPaintManager->FindSubControlByName(msg.pSender->GetParent()->GetParent(), _T("down_name"));
 
 		if(find_ctrl)
 		{
-			MessageBox(NULL, 
-				find_ctrl->GetText()+_T(" 演示未选中行中的按钮触发动作，依该按钮父结点的找到所属行listcontainer.."), 
-				_T("DUILIB DEMO"), MB_OK);   
+			MessageBox(NULL,
+				find_ctrl->GetText()+_T(" 演示未选中行中的按钮触发动作，依该按钮父结点的找到所属行listcontainer.."),
+				_T("DUILIB DEMO"), MB_OK);
 			((CLabelUI *)find_ctrl)->SetText(_T("由程序动态设置后的名称..."));
 		}
 		}
 	else if(msg.pSender->GetName() == _T("down_del"))
 	{
-		CListUI *down_list = 
+		CListUI *down_list =
 			static_cast<CListUI*>(m_pPaintManager->FindControl(_T("down_list_tab")));
 		if(!down_list)
 			return;
 
-		down_list->RemoveAt(down_list->GetCurSel());                   
+		down_list->RemoveAt(down_list->GetCurSel());
 	}
 	else if(msg.pSender->GetName() == _T("down_new"))
 	{
@@ -182,7 +182,7 @@ DuiLib::CDuiString CRichListWnd::GetSkinFolder()
 #else
 	return _T("skin\\");
 #endif
-	
+
 }
 
 DuiLib::CDuiString CRichListWnd::GetSkinFile()
@@ -211,24 +211,24 @@ LPCTSTR CRichListWnd::GetWindowClassName( void ) const
 
 void CRichListWnd::OnClick( TNotifyUI &msg )
 {
-	if( msg.pSender == m_pCloseBtn ) 
-	{ 
+	if( msg.pSender == m_pCloseBtn )
+	{
 		PostQuitMessage(0); // 因为activex的原因，使用close可能会出现错误
-		return; 
-	}else if( msg.pSender == m_pMinBtn ) 
-	{ 
-		SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0); 
-		return; 
-	}else if( msg.pSender == m_pMaxBtn ) 
-	{ 
-		SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); 
-		return; 
-	}else if( msg.pSender == m_pRestoreBtn ) 
+		return;
+	}else if( msg.pSender == m_pMinBtn )
+	{
+		SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
+		return;
+	}else if( msg.pSender == m_pMaxBtn )
+	{
+		SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+		return;
+	}else if( msg.pSender == m_pRestoreBtn )
 	{
 		SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0);
 		return;
 	}
-	else if( msg.pSender->GetName() == _T("quitbtn") ) 
+	else if( msg.pSender->GetName() == _T("quitbtn") )
 	{
 		PostQuitMessage(0); // 因为activex的原因，使用close可能会出现错误
 	}
@@ -251,21 +251,21 @@ void CRichListWnd::OnItemClick( TNotifyUI &msg )
 	TCHAR alert_msg[64] = {0};
 	int index = ((CListContainerElementUI *)msg.pSender)->GetIndex();
 	wsprintf(alert_msg, _T("选中了行%d, 查找本行内的下载项目名..."), index);
-	MessageBox(NULL, alert_msg, _T("DUILIB DEMO"), MB_OK);            
+	MessageBox(NULL, alert_msg, _T("DUILIB DEMO"), MB_OK);
 
 	CControlUI *find_ctrl =m_PaintManager.FindSubControlByName(msg.pSender, _T("down_name"));
 
 	if(find_ctrl)
 	{
-		MessageBox(NULL, 
-			find_ctrl->GetText()+_T(" 选中行的下载项目名称.."), 
-			_T("DUILIB DEMO"), MB_OK);   
+		MessageBox(NULL,
+			find_ctrl->GetText()+_T(" 选中行的下载项目名称.."),
+			_T("DUILIB DEMO"), MB_OK);
 		((CLabelUI *)find_ctrl)->SetText(_T("由程序动态设置后的名称..."));
 	}
 	else
 	{
-		MessageBox(NULL, _T("本测试行未为控件设置name，故找不到要操作的控件"), 
-			_T("DUILIB DEMO"), MB_OK);   
+		MessageBox(NULL, _T("本测试行未为控件设置name，故找不到要操作的控件"),
+			_T("DUILIB DEMO"), MB_OK);
 	}
 
 	find_ctrl =m_PaintManager.FindSubControlByName(msg.pSender, _T("down_progress"));
@@ -274,10 +274,10 @@ void CRichListWnd::OnItemClick( TNotifyUI &msg )
 	{
 		TCHAR alert_msg[256] = {0};
 		wsprintf(alert_msg, _T("进度条值:%d"), ((CProgressUI *)find_ctrl)->GetValue());
-		MessageBox(NULL, alert_msg, _T("DUILIB DEMO"), MB_OK);   
+		MessageBox(NULL, alert_msg, _T("DUILIB DEMO"), MB_OK);
 
 		((CProgressUI *)find_ctrl)->SetValue(30);
-		MessageBox(NULL, _T("修改了进度条值"), _T("DUILIB DEMO"), MB_OK);   
+		MessageBox(NULL, _T("修改了进度条值"), _T("DUILIB DEMO"), MB_OK);
 	}
 }
 
@@ -348,7 +348,7 @@ LRESULT CRichListWnd::OnMouseHover(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL
 	{
 		MessageBox(NULL, _T("鼠标在某控件例如按钮上悬停后，对目标控件操作，这里改变了状态图标大小"), _T("DUILIB DEMO"), MB_OK);
 		((CButtonUI *)pHover)->ApplyAttributeList(
-			_T("normalimage=\"file='downlist_pause.png' dest='15,9,32,26'\""));                
+			_T("normalimage=\"file='downlist_pause.png' dest='15,9,32,26'\""));
 	}
 	return 0;
 }

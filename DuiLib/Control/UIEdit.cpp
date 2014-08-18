@@ -58,7 +58,7 @@ namespace DuiLib
 		::SetWindowLong(GetHWND(), GWL_STYLE, styleValue);
 		::ShowWindow(m_hWnd, SW_SHOWNOACTIVATE);
 		::SetFocus(m_hWnd);
-		m_bInit = true;    
+		m_bInit = true;
 	}
 
 	RECT CEditWnd::CalPos()
@@ -155,8 +155,8 @@ namespace DuiLib
 	//
 	//
 
-	CEditUI::CEditUI() : m_pWindow(NULL), m_uMaxChar(255), m_bReadOnly(false), 
-		m_bPasswordMode(false), m_cPasswordChar(_T('*')), m_uButtonState(0), 
+	CEditUI::CEditUI() : m_pWindow(NULL), m_uMaxChar(255), m_bReadOnly(false),
+		m_bPasswordMode(false), m_cPasswordChar(_T('*')), m_uButtonState(0),
 		m_dwEditbkColor(0xFFFFFFFF), m_iWindowStyls(0)
 	{
 		SetTextPadding(CDuiRect(4, 3, 4, 3));
@@ -202,7 +202,7 @@ namespace DuiLib
 		{
 			if( m_pWindow != NULL ) return;
 		}
-		if( event.Type == UIEVENT_SETFOCUS && IsEnabled() ) 
+		if( event.Type == UIEVENT_SETFOCUS && IsEnabled() )
 		{
 			if( m_pWindow ) return;
 			m_pWindow = new CEditWnd();
@@ -210,11 +210,11 @@ namespace DuiLib
 			m_pWindow->Init(this);
 			Invalidate();
 		}
-		if( event.Type == UIEVENT_KILLFOCUS && IsEnabled() ) 
+		if( event.Type == UIEVENT_KILLFOCUS && IsEnabled() )
 		{
 			Invalidate();
 		}
-		if( event.Type == UIEVENT_BUTTONDOWN || event.Type == UIEVENT_DBLCLICK || event.Type == UIEVENT_RBUTTONDOWN) 
+		if( event.Type == UIEVENT_BUTTONDOWN || event.Type == UIEVENT_DBLCLICK || event.Type == UIEVENT_RBUTTONDOWN)
 		{
 			if( IsEnabled() ) {
 				GetManager()->ReleaseCapture();
@@ -251,11 +251,11 @@ namespace DuiLib
 			}
 			return;
 		}
-		if( event.Type == UIEVENT_MOUSEMOVE ) 
+		if( event.Type == UIEVENT_MOUSEMOVE )
 		{
 			return;
 		}
-		if( event.Type == UIEVENT_BUTTONUP ) 
+		if( event.Type == UIEVENT_BUTTONUP )
 		{
 			return;
 		}
@@ -339,7 +339,7 @@ namespace DuiLib
 		return m_iWindowStyls&ES_NUMBER ? true:false;
 	}
 
-	int CEditUI::GetWindowStyls() const 
+	int CEditUI::GetWindowStyls() const
 	{
 		return m_iWindowStyls;
 	}
@@ -443,8 +443,8 @@ namespace DuiLib
 		CControlUI::SetPos(rc);
 		if( m_pWindow != NULL ) {
 			RECT rcPos = m_pWindow->CalPos();
-			::SetWindowPos(m_pWindow->GetHWND(), NULL, rcPos.left, rcPos.top, rcPos.right - rcPos.left, 
-				rcPos.bottom - rcPos.top, SWP_NOZORDER | SWP_NOACTIVATE);        
+			::SetWindowPos(m_pWindow->GetHWND(), NULL, rcPos.left, rcPos.top, rcPos.right - rcPos.left,
+				rcPos.bottom - rcPos.top, SWP_NOZORDER | SWP_NOACTIVATE);
 		}
 	}
 

@@ -663,7 +663,7 @@ BOOL CToolBoxCtrl::OnDrawTool(CDC* pDC, CToolElement* pTool) const
 			pDC->SelectObject(oldBsh);
 			pDC->SelectObject(oldPen);
 		}
-		
+
 
 		int nHeight=m_nToolHeight;
 		if (pTool->IsToolTab())
@@ -1013,7 +1013,7 @@ void CToolBoxCtrl::OnMouseMove(UINT nFlags, CPoint point)
 	if(m_pHover)
 		m_pHover->Redraw();
 
-	// Post message when the mouse pointer leaves the window 
+	// Post message when the mouse pointer leaves the window
 	TRACKMOUSEEVENT   tme;
 	tme.cbSize = sizeof(tme);
 	tme.dwFlags = TME_LEAVE;

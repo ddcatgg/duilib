@@ -174,7 +174,7 @@ HINSTANCE CPaintManagerUI::GetInstance()
 CDuiString CPaintManagerUI::GetInstancePath()
 {
     if( m_hInstance == NULL ) return _T('\0');
-    
+
     TCHAR tszModule[MAX_PATH + 1] = { 0 };
     ::GetModuleFileName(m_hInstance, tszModule, MAX_PATH);
     CDuiString sInstancePath = tszModule;
@@ -248,7 +248,7 @@ void CPaintManagerUI::SetResourceZip(LPVOID pVoid, unsigned int len)
     }
     m_pStrResourceZip = _T("membuffer");
     m_bCachedResourceZip = true;
-    if( m_bCachedResourceZip ) 
+    if( m_bCachedResourceZip )
         m_hResourceZip = (HANDLE)OpenZip(pVoid, len, 3);
 }
 
@@ -432,7 +432,7 @@ void CPaintManagerUI::SetTransparent(int nOpacity)
         HMODULE hUser32 = ::GetModuleHandle(_T("User32.dll"));
         if (hUser32)
         {
-            fSetLayeredWindowAttributes = 
+            fSetLayeredWindowAttributes =
                 (PFUNCSETLAYEREDWINDOWATTR)::GetProcAddress(hUser32, "SetLayeredWindowAttributes");
             if( fSetLayeredWindowAttributes == NULL ) return;
         }
@@ -463,7 +463,7 @@ void CPaintManagerUI::SetShowUpdateRect(bool show)
 
 bool CPaintManagerUI::PreMessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT& /*lRes*/)
 {
-    for( int i = 0; i < m_aPreMessageFilters.GetSize(); i++ ) 
+    for( int i = 0; i < m_aPreMessageFilters.GetSize(); i++ )
     {
         bool bHandled = false;
         LRESULT lResult = static_cast<IMessageFilterUI*>(m_aPreMessageFilters[i])->MessageHandler(uMsg, wParam, lParam, bHandled);
@@ -528,7 +528,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
 //#endif
     // Not ready yet?
     if( m_hWndPaint == NULL ) return false;
-    
+
     TNotifyUI* pMsg = NULL;
     while( pMsg = static_cast<TNotifyUI*>(m_aAsyncNotify.GetAt(0)) ) {
         m_aAsyncNotify.Remove(0);
@@ -540,9 +540,9 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
         }
         delete pMsg;
     }
-    
+
     // Cycle through listeners
-    for( int i = 0; i < m_aMessageFilters.GetSize(); i++ ) 
+    for( int i = 0; i < m_aMessageFilters.GetSize(); i++ )
     {
         bool bHandled = false;
         LRESULT lResult = static_cast<IMessageFilterUI*>(m_aMessageFilters[i])->MessageHandler(uMsg, wParam, lParam, bHandled);
@@ -555,7 +555,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
     switch( uMsg ) {
     case WM_APP + 1:
         {
-            for( int i = 0; i < m_aDelayedCleanup.GetSize(); i++ ) 
+            for( int i = 0; i < m_aDelayedCleanup.GetSize(); i++ )
                 delete static_cast<CControlUI*>(m_aDelayedCleanup[i]);
             m_aDelayedCleanup.Empty();
         }
@@ -601,7 +601,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                 ::BeginPaint(m_hWndPaint, &ps);
                 ::EndPaint(m_hWndPaint, &ps);
                 return true;
-            }            
+            }
             // Do we need to resize anything?
             // This is the time where we layout the controls on the form.
             // We delay this even from the WM_SIZE messages since resizing can be
@@ -650,7 +650,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                 RECT rcClient = { 0 };
                 ::GetClientRect(m_hWndPaint, &rcClient);
                 m_hDcOffscreen = ::CreateCompatibleDC(m_hDcPaint);
-                m_hbmpOffscreen = ::CreateCompatibleBitmap(m_hDcPaint, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top); 
+                m_hbmpOffscreen = ::CreateCompatibleBitmap(m_hDcPaint, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top);
                 ASSERT(m_hDcOffscreen);
                 ASSERT(m_hbmpOffscreen);
             }
@@ -666,7 +666,7 @@ bool CPaintManagerUI::MessageHandler(UINT uMsg, WPARAM wParam, LPARAM lParam, LR
                         RECT rcClient = { 0 };
                         ::GetClientRect(m_hWndPaint, &rcClient);
                         m_hDcBackground = ::CreateCompatibleDC(m_hDcPaint);;
-                        m_hbmpBackground = ::CreateCompatibleBitmap(m_hDcPaint, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top); 
+                        m_hbmpBackground = ::CreateCompatibleBitmap(m_hDcPaint, rcClient.right - rcClient.left, rcClient.bottom - rcClient.top);
                         ASSERT(m_hDcBackground);
                         ASSERT(m_hbmpBackground);
                         ::SelectObject(m_hDcBackground, m_hbmpBackground);
@@ -1148,7 +1148,7 @@ void CPaintManagerUI::ReapObjects(CControlUI* pControl)
     for( int i = 0; i < m_aAsyncNotify.GetSize(); i++ ) {
         TNotifyUI* pMsg = static_cast<TNotifyUI*>(m_aAsyncNotify[i]);
         if( pMsg->pSender == pControl ) pMsg->pSender = NULL;
-    }    
+    }
 }
 
 bool CPaintManagerUI::AddOptionGroup(LPCTSTR pStrGroupName, CControlUI* pControl)
@@ -1248,7 +1248,7 @@ void CPaintManagerUI::SetFocus(CControlUI* pControl)
     // Already has focus?
     if( pControl == m_pFocus ) return;
     // Remove focus from old control
-    if( m_pFocus != NULL ) 
+    if( m_pFocus != NULL )
     {
         TEventUI event = { 0 };
         event.Type = UIEVENT_KILLFOCUS;
@@ -1260,10 +1260,10 @@ void CPaintManagerUI::SetFocus(CControlUI* pControl)
     }
     if( pControl == NULL ) return;
     // Set focus to new control
-    if( pControl != NULL 
-        && pControl->GetManager() == this 
-        && pControl->IsVisible() 
-        && pControl->IsEnabled() ) 
+    if( pControl != NULL
+        && pControl->GetManager() == this
+        && pControl->IsVisible()
+        && pControl->IsEnabled() )
     {
         m_pFocus = pControl;
         TEventUI event = { 0 };
@@ -1408,7 +1408,7 @@ bool CPaintManagerUI::SetNextTabControl(bool bForward)
     info1.pFocus = m_pFocus;
     info1.bForward = bForward;
     CControlUI* pControl = m_pRoot->FindControl(__FindControlFromTab, &info1, UIFIND_VISIBLE | UIFIND_ENABLED | UIFIND_ME_FIRST);
-    if( pControl == NULL ) {  
+    if( pControl == NULL ) {
         if( bForward ) {
             // Wrap around
             FINDTABINFO info2 = { 0 };
@@ -1753,8 +1753,8 @@ HFONT CPaintManagerUI::GetFont(LPCTSTR pStrFontName, int nSize, bool bBold, bool
     TFontInfo* pFontInfo = NULL;
     for( int it = 0; it < m_aCustomFonts.GetSize(); it++ ) {
         pFontInfo = static_cast<TFontInfo*>(m_aCustomFonts[it]);
-        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize && 
-            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic) 
+        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize &&
+            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic)
             return pFontInfo->hFont;
     }
     if( m_pParentResourcePM ) return m_pParentResourcePM->GetFont(pStrFontName, nSize, bBold, bUnderline, bItalic);
@@ -1777,8 +1777,8 @@ bool CPaintManagerUI::FindFont(LPCTSTR pStrFontName, int nSize, bool bBold, bool
     TFontInfo* pFontInfo = NULL;
     for( int it = 0; it < m_aCustomFonts.GetSize(); it++ ) {
         pFontInfo = static_cast<TFontInfo*>(m_aCustomFonts[it]);
-        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize && 
-            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic) 
+        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize &&
+            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic)
             return true;
     }
     if( m_pParentResourcePM ) return m_pParentResourcePM->FindFont(pStrFontName, nSize, bBold, bUnderline, bItalic);
@@ -1800,8 +1800,8 @@ int CPaintManagerUI::GetFontIndex(LPCTSTR pStrFontName, int nSize, bool bBold, b
     TFontInfo* pFontInfo = NULL;
     for( int it = 0; it < m_aCustomFonts.GetSize(); it++ ) {
         pFontInfo = static_cast<TFontInfo*>(m_aCustomFonts[it]);
-        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize && 
-            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic) 
+        if( pFontInfo->sFontName == pStrFontName && pFontInfo->iSize == nSize &&
+            pFontInfo->bBold == bBold && pFontInfo->bUnderline == bUnderline && pFontInfo->bItalic == bItalic)
             return it;
     }
     return -1;
@@ -2011,7 +2011,7 @@ LPCTSTR CPaintManagerUI::GetDefaultAttributeList(LPCTSTR pStrControlName) const
 {
     CDuiString* pDefaultAttr = static_cast<CDuiString*>(m_DefaultAttrHash.Find(pStrControlName));
     if( !pDefaultAttr && m_pParentResourcePM ) return m_pParentResourcePM->GetDefaultAttributeList(pStrControlName);
-    
+
     if( pDefaultAttr ) return pDefaultAttr->GetData();
     else return NULL;
 }
@@ -2135,7 +2135,7 @@ CControlUI* CALLBACK CPaintManagerUI::__FindControlFromTab(CControlUI* pThis, LP
 
 CControlUI* CALLBACK CPaintManagerUI::__FindControlFromShortcut(CControlUI* pThis, LPVOID pData)
 {
-    if( !pThis->IsVisible() ) return NULL; 
+    if( !pThis->IsVisible() ) return NULL;
     FINDSHORTCUT* pFS = static_cast<FINDSHORTCUT*>(pData);
     if( pFS->ch == toupper(pThis->GetShortcut()) ) pFS->bPickNext = true;
     if( _tcsstr(pThis->GetClass(), _T("LabelUI")) != NULL ) return NULL;   // Labels never get focus!
@@ -2165,7 +2165,7 @@ CControlUI* CALLBACK CPaintManagerUI::__FindControlFromClass(CControlUI* pThis, 
         while( pFoundControls->GetAt(++iIndex) != NULL ) ;
         if( iIndex < pFoundControls->GetSize() ) pFoundControls->SetAt(iIndex, pThis);
     }
-    if( pFoundControls->GetAt(pFoundControls->GetSize() - 1) != NULL ) return pThis; 
+    if( pFoundControls->GetAt(pFoundControls->GetSize() - 1) != NULL ) return pThis;
     return NULL;
 }
 
@@ -2173,7 +2173,7 @@ CControlUI* CALLBACK CPaintManagerUI::__FindControlsFromClass(CControlUI* pThis,
 {
     LPCTSTR pstrType = static_cast<LPCTSTR>(pData);
     LPCTSTR pType = pThis->GetClass();
-    if( _tcscmp(pstrType, _T("*")) == 0 || _tcscmp(pstrType, pType) == 0 ) 
+    if( _tcscmp(pstrType, _T("*")) == 0 || _tcscmp(pstrType, pType) == 0 )
         pThis->GetManager()->GetSubControlsByClass()->Add((LPVOID)pThis);
     return NULL;
 }
@@ -2194,15 +2194,15 @@ bool CPaintManagerUI::TranslateMessage(const LPMSG pMsg)
 	// tabbing and shortcut key-combos. We'll look for all messages for
 	// each window and any child control attached.
 	UINT uStyle = GetWindowStyle(pMsg->hwnd);
-	UINT uChildRes = uStyle & WS_CHILD;	
+	UINT uChildRes = uStyle & WS_CHILD;
 	LRESULT lRes = 0;
 	if (uChildRes != 0)
 	{
 		HWND hWndParent = ::GetParent(pMsg->hwnd);
 
-		for( int i = 0; i < m_aPreMessages.GetSize(); i++ ) 
+		for( int i = 0; i < m_aPreMessages.GetSize(); i++ )
 		{
-			CPaintManagerUI* pT = static_cast<CPaintManagerUI*>(m_aPreMessages[i]);        
+			CPaintManagerUI* pT = static_cast<CPaintManagerUI*>(m_aPreMessages[i]);
 			HWND hTempParent = hWndParent;
 			while(hTempParent)
 			{
@@ -2211,7 +2211,7 @@ bool CPaintManagerUI::TranslateMessage(const LPMSG pMsg)
 					if (pT->TranslateAccelerator(pMsg))
 						return true;
 
-					if( pT->PreMessageHandler(pMsg->message, pMsg->wParam, pMsg->lParam, lRes) ) 
+					if( pT->PreMessageHandler(pMsg->message, pMsg->wParam, pMsg->lParam, lRes) )
 						return true;
 
 					return false;
@@ -2222,7 +2222,7 @@ bool CPaintManagerUI::TranslateMessage(const LPMSG pMsg)
 	}
 	else
 	{
-		for( int i = 0; i < m_aPreMessages.GetSize(); i++ ) 
+		for( int i = 0; i < m_aPreMessages.GetSize(); i++ )
 		{
 			CPaintManagerUI* pT = static_cast<CPaintManagerUI*>(m_aPreMessages[i]);
 			if(pMsg->hwnd == pT->GetPaintWindow())
@@ -2230,7 +2230,7 @@ bool CPaintManagerUI::TranslateMessage(const LPMSG pMsg)
 				if (pT->TranslateAccelerator(pMsg))
 					return true;
 
-				if( pT->PreMessageHandler(pMsg->message, pMsg->wParam, pMsg->lParam, lRes) ) 
+				if( pT->PreMessageHandler(pMsg->message, pMsg->wParam, pMsg->lParam, lRes) )
 					return true;
 
 				return false;

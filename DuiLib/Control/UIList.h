@@ -105,7 +105,7 @@ public:
     int GetCurSel() const;
     bool SelectItem(int iIndex, bool bTakeFocus = false);
 
-    CListHeaderUI* GetHeader() const;  
+    CListHeaderUI* GetHeader() const;
     CContainerUI* GetList() const;
     TListInfoUI* GetListInfo();
 
@@ -134,7 +134,7 @@ public:
     void SetAlternateBk(bool bAlternateBk);
     void SetSelectedItemTextColor(DWORD dwTextColor);
     void SetSelectedItemBkColor(DWORD dwBkColor);
-    void SetSelectedItemImage(LPCTSTR pStrImage); 
+    void SetSelectedItemImage(LPCTSTR pStrImage);
     void SetHotItemTextColor(DWORD dwTextColor);
     void SetHotItemBkColor(DWORD dwBkColor);
     void SetHotItemImage(LPCTSTR pStrImage);
@@ -160,7 +160,7 @@ public:
 	LPCTSTR GetDisabledItemImage() const;
 	DWORD GetItemLineColor() const;
 
-    void SetMultiExpanding(bool bMultiExpandable); 
+    void SetMultiExpanding(bool bMultiExpandable);
     int GetExpandedItem() const;
     bool ExpandItem(int iIndex, bool bExpand = true);
 
@@ -429,7 +429,7 @@ public:
     void SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue);
     void DoPaint(HDC hDC, const RECT& rcPaint);
 
-    void DrawItemText(HDC hDC, const RECT& rcItem);    
+    void DrawItemText(HDC hDC, const RECT& rcItem);
     void DrawItemBk(HDC hDC, const RECT& rcItem);
 
 protected:

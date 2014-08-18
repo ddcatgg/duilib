@@ -27,8 +27,8 @@ ColorSkinWindow::ColorSkinWindow(MainFrame* main_frame, RECT rcParentWindow)
 	ShowWindow(true);
 }
 
-LPCTSTR ColorSkinWindow::GetWindowClassName() const 
-{ 
+LPCTSTR ColorSkinWindow::GetWindowClassName() const
+{
 	return _T("ColorSkinWindow");
 }
 

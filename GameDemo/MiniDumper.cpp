@@ -43,18 +43,18 @@ CMiniDumper::CMiniDumper( bool bPromptUserForMiniDump )
     s_pMiniDumper = this;
     m_bPromptUserForMiniDump = bPromptUserForMiniDump;
 
-    // The SetUnhandledExceptionFilter function enables an application to 
+    // The SetUnhandledExceptionFilter function enables an application to
     // supersede the top-level exception handler of each thread and process.
-    // After calling this function, if an exception occurs in a process 
-    // that is not being debugged, and the exception makes it to the 
-    // unhandled exception filter, that filter will call the exception 
+    // After calling this function, if an exception occurs in a process
+    // that is not being debugged, and the exception makes it to the
+    // unhandled exception filter, that filter will call the exception
     // filter function specified by the lpTopLevelExceptionFilter parameter.
 	::SetUnhandledExceptionFilter( unhandledExceptionHandler );
 
-    // Since DBGHELP.dll is not inherently thread-safe, making calls into it 
-    // from more than one thread simultaneously may yield undefined behavior. 
-    // This means that if your application has multiple threads, or is 
-    // called by multiple threads in a non-synchronized manner, you need to  
+    // Since DBGHELP.dll is not inherently thread-safe, making calls into it
+    // from more than one thread simultaneously may yield undefined behavior.
+    // This means that if your application has multiple threads, or is
+    // called by multiple threads in a non-synchronized manner, you need to
     // make sure that all calls into DBGHELP.dll are isolated via a global
     // critical section.
     s_pCriticalSection = new CRITICAL_SECTION;
@@ -90,7 +90,7 @@ LONG CMiniDumper::unhandledExceptionHandler( _EXCEPTION_POINTERS *pExceptionInfo
 
 //-----------------------------------------------------------------------------
 // Name: setMiniDumpFileName()
-// Desc: 
+// Desc:
 //-----------------------------------------------------------------------------
 void CMiniDumper::setMiniDumpFileName( void )
 {
@@ -106,8 +106,8 @@ void CMiniDumper::setMiniDumpFileName( void )
 
 //-----------------------------------------------------------------------------
 // Name: getImpersonationToken()
-// Desc: The method acts as a potential workaround for the fact that the 
-//       current thread may not have a token assigned to it, and if not, the 
+// Desc: The method acts as a potential workaround for the fact that the
+//       current thread may not have a token assigned to it, and if not, the
 //       process token is received.
 //-----------------------------------------------------------------------------
 bool CMiniDumper::getImpersonationToken( HANDLE* phToken )
@@ -121,7 +121,7 @@ bool CMiniDumper::getImpersonationToken( HANDLE* phToken )
     {
         if( GetLastError() == ERROR_NO_TOKEN )
         {
-            // No impersonation token for the current thread is available. 
+            // No impersonation token for the current thread is available.
             // Let's go for the process token instead.
             if( !OpenProcessToken( GetCurrentProcess(),
                                    TOKEN_QUERY | TOKEN_ADJUST_PRIVILEGES,
@@ -137,9 +137,9 @@ bool CMiniDumper::getImpersonationToken( HANDLE* phToken )
 
 //-----------------------------------------------------------------------------
 // Name: enablePrivilege()
-// Desc: Since a MiniDump contains a lot of meta-data about the OS and 
-//       application state at the time of the dump, it is a rather privileged 
-//       operation. This means we need to set the SeDebugPrivilege to be able 
+// Desc: Since a MiniDump contains a lot of meta-data about the OS and
+//       application state at the time of the dump, it is a rather privileged
+//       operation. This means we need to set the SeDebugPrivilege to be able
 //       to call MiniDumpWriteDump.
 //-----------------------------------------------------------------------------
 BOOL CMiniDumper::enablePrivilege( LPCTSTR pszPriv, HANDLE hToken, TOKEN_PRIVILEGES* ptpOld )
@@ -162,7 +162,7 @@ BOOL CMiniDumper::enablePrivilege( LPCTSTR pszPriv, HANDLE hToken, TOKEN_PRIVILE
 
 //-----------------------------------------------------------------------------
 // Name: restorePrivilege()
-// Desc: 
+// Desc:
 //-----------------------------------------------------------------------------
 BOOL CMiniDumper::restorePrivilege( HANDLE hToken, TOKEN_PRIVILEGES* ptpOld )
 {
@@ -172,7 +172,7 @@ BOOL CMiniDumper::restorePrivilege( HANDLE hToken, TOKEN_PRIVILEGES* ptpOld )
 
 //-----------------------------------------------------------------------------
 // Name: writeMiniDump()
-// Desc: 
+// Desc:
 //-----------------------------------------------------------------------------
 LONG CMiniDumper::writeMiniDump( _EXCEPTION_POINTERS *pExceptionInfo )
 {
@@ -183,9 +183,9 @@ LONG CMiniDumper::writeMiniDump( _EXCEPTION_POINTERS *pExceptionInfo )
     if( !getImpersonationToken( &hImpersonationToken ) )
         return FALSE;
 
-	// You have to find the right dbghelp.dll. 
+	// You have to find the right dbghelp.dll.
 	// Look next to the EXE first since the one in System32 might be old (Win2k)
-	
+
 	HMODULE hDll = NULL;
 	TCHAR szDbgHelpPath[MAX_PATH];
 
@@ -214,9 +214,9 @@ LONG CMiniDumper::writeMiniDump( _EXCEPTION_POINTERS *pExceptionInfo )
 
 	if( hDll )
 	{
-        // Get the address of the MiniDumpWriteDump function, which writes 
+        // Get the address of the MiniDumpWriteDump function, which writes
         // user-mode mini-dump information to a specified file.
-		MINIDUMPWRITEDUMP MiniDumpWriteDump = 
+		MINIDUMPWRITEDUMP MiniDumpWriteDump =
             (MINIDUMPWRITEDUMP)::GetProcAddress( hDll, "MiniDumpWriteDump" );
 
 		if( MiniDumpWriteDump != NULL )
@@ -232,12 +232,12 @@ LONG CMiniDumper::writeMiniDump( _EXCEPTION_POINTERS *pExceptionInfo )
                          m_szMiniDumpPath);
 
 			// Create the mini-dump file...
-			HANDLE hFile = ::CreateFile( m_szMiniDumpPath, 
-                                            GENERIC_WRITE, 
-                                            FILE_SHARE_WRITE, 
-                                            NULL, 
-                                            CREATE_ALWAYS, 
-                                            FILE_ATTRIBUTE_NORMAL, 
+			HANDLE hFile = ::CreateFile( m_szMiniDumpPath,
+                                            GENERIC_WRITE,
+                                            FILE_SHARE_WRITE,
+                                            NULL,
+                                            CREATE_ALWAYS,
+                                            FILE_ATTRIBUTE_NORMAL,
                                             NULL );
 
 			if( hFile != INVALID_HANDLE_VALUE )

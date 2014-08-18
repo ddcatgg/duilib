@@ -37,11 +37,11 @@ namespace DuiLib
 			return;
 		}
 
-		if( event.Type == UIEVENT_SETFOCUS ) 
+		if( event.Type == UIEVENT_SETFOCUS )
 		{
 			Invalidate();
 		}
-		if( event.Type == UIEVENT_KILLFOCUS ) 
+		if( event.Type == UIEVENT_KILLFOCUS )
 		{
 			Invalidate();
 		}
@@ -128,11 +128,11 @@ namespace DuiLib
 	//************************************
 	// Method:    SetHotBkColor
 	// FullName:  CButtonUI::SetHotBkColor
-	// Access:    public 
+	// Access:    public
 	// Returns:   void
 	// Qualifier:
 	// Parameter: DWORD dwColor
-	// Note:	  
+	// Note:
 	//************************************
 	void CButtonUI::SetHotBkColor( DWORD dwColor )
 	{
@@ -142,10 +142,10 @@ namespace DuiLib
 	//************************************
 	// Method:    GetHotBkColor
 	// FullName:  CButtonUI::GetHotBkColor
-	// Access:    public 
+	// Access:    public
 	// Returns:   DWORD
 	// Qualifier: const
-	// Note:	  
+	// Note:
 	//************************************
 	DWORD CButtonUI::GetHotBkColor() const
 	{
@@ -240,10 +240,10 @@ namespace DuiLib
 	//************************************
 	// Method:    GetForeImage
 	// FullName:  CButtonUI::GetForeImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   LPCTSTR
 	// Qualifier:
-	// Note:	  
+	// Note:
 	//************************************
 	LPCTSTR CButtonUI::GetForeImage()
 	{
@@ -253,11 +253,11 @@ namespace DuiLib
 	//************************************
 	// Method:    SetForeImage
 	// FullName:  CButtonUI::SetForeImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   void
 	// Qualifier:
 	// Parameter: LPCTSTR pStrImage
-	// Note:	  
+	// Note:
 	//************************************
 	void CButtonUI::SetForeImage( LPCTSTR pStrImage )
 	{
@@ -268,10 +268,10 @@ namespace DuiLib
 	//************************************
 	// Method:    GetHotForeImage
 	// FullName:  CButtonUI::GetHotForeImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   LPCTSTR
 	// Qualifier:
-	// Note:	  
+	// Note:
 	//************************************
 	LPCTSTR CButtonUI::GetHotForeImage()
 	{
@@ -281,11 +281,11 @@ namespace DuiLib
 	//************************************
 	// Method:    SetHotForeImage
 	// FullName:  CButtonUI::SetHotForeImage
-	// Access:    public 
+	// Access:    public
 	// Returns:   void
 	// Qualifier:
 	// Parameter: LPCTSTR pStrImage
-	// Note:	  
+	// Note:
 	//************************************
 	void CButtonUI::SetHotForeImage( LPCTSTR pStrImage )
 	{

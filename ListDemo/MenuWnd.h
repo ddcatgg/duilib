@@ -35,7 +35,7 @@ public:
     UINT GetClassStyle() const { return UI_CLASSSTYLE_FRAME; };
     void OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
-    void RePaint() 
+    void RePaint()
     {
         RECT rcClient = { 0 };
         ::GetClientRect(m_hWnd, &rcClient);
@@ -66,7 +66,7 @@ public:
 
         m_bNeedUpdate = false;
     }
-    
+
     LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
     {
         if( uMsg == WM_CREATE ) SetTimer(m_hWnd, 9000, 10, NULL);
@@ -253,7 +253,7 @@ public:
         switch( uMsg ) {
         case WM_CREATE:        lRes = OnCreate(uMsg, wParam, lParam, bHandled); break;
         case WM_CLOSE:         lRes = OnClose(uMsg, wParam, lParam, bHandled); break;
-        case WM_KILLFOCUS:     lRes = OnKillFocus(uMsg, wParam, lParam, bHandled); break; 
+        case WM_KILLFOCUS:     lRes = OnKillFocus(uMsg, wParam, lParam, bHandled); break;
         case WM_KEYDOWN:       lRes = OnKeyDown(uMsg, wParam, lParam, bHandled); break;
         case WM_MOUSEWHEEL:    break;
         case WM_SIZE:          lRes = OnSize(uMsg, wParam, lParam, bHandled); break;

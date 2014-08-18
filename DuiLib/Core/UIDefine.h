@@ -15,7 +15,7 @@ enum DuiSig
 class CControlUI;
 
 // Structure for notifications to the outside world
-typedef struct tagTNotifyUI 
+typedef struct tagTNotifyUI
 {
 	CDuiString sType;
 	CDuiString sVirtualWnd;

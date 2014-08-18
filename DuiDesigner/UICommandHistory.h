@@ -101,7 +101,7 @@ protected:
 	void ActionModify(CUICommandElement* pAfter);
 	void ActionDelete(CUICommandElement* pBefore);
 	void SetUIAction(TiXmlNode* pElement, UIACTIONPROC Proc);
-	
+
 private:
 	static void CALLBACK UIAdd(TiXmlNode* pNode);
 	static void CALLBACK UIModify(TiXmlNode* pNode);

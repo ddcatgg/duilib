@@ -88,7 +88,7 @@ namespace DuiLib
 				m_nHoverLink = nHoverLink;
 				Invalidate();
 				return;
-			}      
+			}
 		}
 		if( event.Type == UIEVENT_MOUSELEAVE ) {
 			if( m_nLinks > 0 && IsEnabled() ) {
@@ -108,7 +108,7 @@ namespace DuiLib
 		RECT rcText = { 0, 0, MAX(szAvailable.cx, m_cxyFixed.cx), 9999 };
 		rcText.left += m_rcTextPadding.left;
 		rcText.right -= m_rcTextPadding.right;
-		if( m_bShowHtml ) {   
+		if( m_bShowHtml ) {
 			int nLinks = 0;
 			CRenderEngine::DrawHtmlText(m_pManager->GetPaintDC(), m_pManager, rcText, m_sText, m_dwTextColor, NULL, NULL, nLinks, DT_CALCRECT | m_uTextStyle);
 		}

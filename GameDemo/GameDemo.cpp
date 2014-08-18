@@ -16,10 +16,10 @@ public:
     CLoginFrameWnd() { };
     LPCTSTR GetWindowClassName() const { return _T("UILoginFrame"); };
     UINT GetClassStyle() const { return UI_CLASSSTYLE_DIALOG; };
-    void OnFinalMessage(HWND /*hWnd*/) 
-    { 
+    void OnFinalMessage(HWND /*hWnd*/)
+    {
         m_pm.RemovePreMessageFilter(this);
-        delete this; 
+        delete this;
     };
 
     void Init() {
@@ -178,14 +178,14 @@ public:
             IWebBrowser2* pWebBrowser = NULL;
             pActiveXUI->GetControl(IID_IWebBrowser2, (void**)&pWebBrowser);
             if( pWebBrowser != NULL ) {
-                pWebBrowser->Navigate(L"https://code.google.com/p/duilib/",NULL,NULL,NULL,NULL);  
-                //pWebBrowser->Navigate(L"about:blank",NULL,NULL,NULL,NULL); 
+                pWebBrowser->Navigate(L"https://code.google.com/p/duilib/",NULL,NULL,NULL,NULL);
+                //pWebBrowser->Navigate(L"about:blank",NULL,NULL,NULL,NULL);
                 pWebBrowser->Release();
             }
         }
     }
 
-    void OnPrepare() { 
+    void OnPrepare() {
         GameListUI* pGameList = static_cast<GameListUI*>(m_pm.FindControl(_T("gamelist")));
         GameListUI::Node* pCategoryNode = NULL;
         GameListUI::Node* pGameNode = NULL;
@@ -221,7 +221,7 @@ public:
         }
 
         CListUI* pUserList = static_cast<CListUI*>(m_pm.FindControl(_T("userlist")));
-        pUserList->SetTextCallback(this);      
+        pUserList->SetTextCallback(this);
         for( int i = 0; i < 400; i++ ) {
             CListTextElementUI* pListElement = new CListTextElementUI;
             pUserList->Add(pListElement);
@@ -280,7 +280,7 @@ public:
     {
         if( msg.sType == _T("windowinit") ) OnPrepare();
         else if( msg.sType == _T("click") ) {
-            if( msg.pSender == m_pCloseBtn ) { 
+            if( msg.pSender == m_pCloseBtn ) {
                 COptionUI* pControl = static_cast<COptionUI*>(m_pm.FindControl(_T("hallswitch")));
                 if( pControl && pControl->IsSelected() == false ) {
                     CControlUI* pFadeControl = m_pm.FindControl(_T("fadeEffect"));
@@ -289,7 +289,7 @@ public:
                 else {
                     /*Close()*/PostQuitMessage(0); // 因为activex的原因，使用close可能会出现错误
                 }
-                return; 
+                return;
             }
             else if( msg.pSender == m_pMinBtn ) { SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0); return; }
             else if( msg.pSender == m_pMaxBtn ) { SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); return; }
@@ -300,7 +300,7 @@ public:
             }
             else if( name == _T("returnhallbtn") ) {
                 CControlUI* pFadeControl = m_pm.FindControl(_T("fadeEffect"));
-                if( pFadeControl ) pFadeControl->SetVisible(false); 
+                if( pFadeControl ) pFadeControl->SetVisible(false);
 
                 COptionUI* pControl = static_cast<COptionUI*>(m_pm.FindControl(_T("hallswitch")));
                 pControl->Activate();
@@ -311,12 +311,12 @@ public:
                 TFontInfo* pFontInfo = m_pm.GetDefaultFontInfo();
                 if( pFontInfo->iSize < 18 ) {
                     TFontInfo* pFontInfo = m_pm.GetFontInfo(0);
-                    if( pFontInfo )m_pm.SetDefaultFont(pFontInfo->sFontName, pFontInfo->iSize, pFontInfo->bBold, 
+                    if( pFontInfo )m_pm.SetDefaultFont(pFontInfo->sFontName, pFontInfo->iSize, pFontInfo->bBold,
                         pFontInfo->bUnderline, pFontInfo->bItalic);
                 }
                 else {
                     TFontInfo* pFontInfo = m_pm.GetFontInfo(1);
-                    if( pFontInfo )m_pm.SetDefaultFont(pFontInfo->sFontName, pFontInfo->iSize, pFontInfo->bBold, 
+                    if( pFontInfo )m_pm.SetDefaultFont(pFontInfo->sFontName, pFontInfo->iSize, pFontInfo->bBold,
                         pFontInfo->bUnderline, pFontInfo->bItalic);
                 }
                 m_pm.GetRoot()->NeedUpdate();
@@ -374,7 +374,7 @@ public:
                     ::ScreenToClient(m_pm.GetPaintWindow(), &pt);
                     pt.x -= msg.pSender->GetX();
                     SIZE sz = pGameList->GetExpanderSizeX(node);
-                    if( pt.x >= sz.cx && pt.x < sz.cy )                     
+                    if( pt.x >= sz.cx && pt.x < sz.cy )
                         pGameList->ExpandNode(node, !node->data()._expand);
                 }
             }
@@ -503,7 +503,7 @@ public:
         if( pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right \
             && pt.y >= rcCaption.top && pt.y < rcCaption.bottom ) {
                 CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
-                if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 && 
+                if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 &&
                     _tcscmp(pControl->GetClass(), _T("OptionUI")) != 0 &&
                     _tcscmp(pControl->GetClass(), _T("TextUI")) != 0 )
                     return HTCAPTION;

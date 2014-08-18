@@ -5,9 +5,9 @@
 // Copyright (c) 2011 achellies (achellies at 163 dot com)
 //
 // This code may be used in compiled form in any way you desire. This
-// source file may be redistributed by any means PROVIDING it is 
-// not sold for profit without the authors written consent, and 
-// providing that this notice and the authors name is included. 
+// source file may be redistributed by any means PROVIDING it is
+// not sold for profit without the authors written consent, and
+// providing that this notice and the authors name is included.
 //
 // This file is provided "as is" with no expressed or implied warranty.
 // The author accepts no liability if it causes any damage to you or your
@@ -87,7 +87,7 @@ LRESULT MainFrame::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kRestoreButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
 		}
-		else 
+		else
 		{
 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kMaxButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
@@ -179,7 +179,7 @@ void MainFrame::Notify(TNotifyUI& msg)
 			SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0);
 #endif
 		}
-		else if (_tcsicmp(msg.pSender->GetName(), _T("btn_menu")) == 0)	
+		else if (_tcsicmp(msg.pSender->GetName(), _T("btn_menu")) == 0)
 		{
 			CMenuWnd* pMenu = new CMenuWnd(m_hWnd);
 			CPoint point = msg.ptMouse;

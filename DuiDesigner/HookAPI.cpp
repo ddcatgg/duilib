@@ -113,12 +113,12 @@ void CHookAPI::EnableHook(HOOKSTRUCT& HookInfo,BOOL bEnable)
 }
 
 HANDLE WINAPI CHookAPI::Hook_CreateFile(
-							  LPCTSTR lpFileName, 
-							  DWORD dwDesiredAccess, 
-							  DWORD dwShareMode, 
-							  LPSECURITY_ATTRIBUTES lpSecurityAttributes, 
-							  DWORD dwCreationDisposition, 
-							  DWORD dwFlagsAndAttributes, 
+							  LPCTSTR lpFileName,
+							  DWORD dwDesiredAccess,
+							  DWORD dwShareMode,
+							  LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+							  DWORD dwCreationDisposition,
+							  DWORD dwFlagsAndAttributes,
 							  HANDLE hTemplateFile
 							  )
 {

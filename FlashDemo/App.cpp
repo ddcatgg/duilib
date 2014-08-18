@@ -12,7 +12,7 @@ public:
     UINT GetClassStyle() const { return UI_CLASSSTYLE_DIALOG; };
     void OnFinalMessage(HWND /*hWnd*/) { delete this; };
 
-    void Init() 
+    void Init()
     {
     }
 
@@ -20,8 +20,8 @@ public:
     {
         if( msg.sType == _T("click") ) {
             if( msg.pSender->GetName() == _T("closebtn") || msg.pSender->GetName() == _T("closebtn2") ) {
-                PostQuitMessage(0); 
-                return; 
+                PostQuitMessage(0);
+                return;
             }
         }
         else if( msg.sType == _T("showactivex") ) {
@@ -37,7 +37,7 @@ public:
                 BSTR response;
                 pFlash->CallFunction(L"<invoke name=\"setButtonText\" returntype=\"xml\"><arguments><string>Click me!</string></arguments></invoke>", &response);
                 pFlash->Release();
-            }  
+            }
         }
     }
 

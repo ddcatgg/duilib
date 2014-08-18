@@ -60,7 +60,7 @@ BOOL CDialogCheckUpdate::OnInitDialog()
 		m_btnUpdateURL.ShowWindow(SW_SHOW);
 		pWndInfo->SetWindowText(_T("新版本可供下载！"));
 	}
-	
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }

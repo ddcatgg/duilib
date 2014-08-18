@@ -54,12 +54,12 @@ namespace DuiLib
 		if( m_bHorizontal ) {
 			int left = m_rcItem.left + (m_rcItem.right - m_rcItem.left - m_szThumb.cx) * (m_nValue - m_nMin) / (m_nMax - m_nMin);
 			int top = (m_rcItem.bottom + m_rcItem.top - m_szThumb.cy) / 2;
-			return CDuiRect(left, top, left + m_szThumb.cx, top + m_szThumb.cy); 
+			return CDuiRect(left, top, left + m_szThumb.cx, top + m_szThumb.cy);
 		}
 		else {
 			int left = (m_rcItem.right + m_rcItem.left - m_szThumb.cx) / 2;
 			int top = m_rcItem.bottom - m_szThumb.cy - (m_rcItem.bottom - m_rcItem.top - m_szThumb.cy) * (m_nValue - m_nMin) / (m_nMax - m_nMin);
-			return CDuiRect(left, top, left + m_szThumb.cx, top + m_szThumb.cy); 
+			return CDuiRect(left, top, left + m_szThumb.cx, top + m_szThumb.cy);
 		}
 	}
 
@@ -137,7 +137,7 @@ namespace DuiLib
 		{
 			return;
 		}
-		if( event.Type == UIEVENT_SCROLLWHEEL ) 
+		if( event.Type == UIEVENT_SCROLLWHEEL )
 		{
 			switch( LOWORD(event.wParam) ) {
 		case SB_LINEUP:
@@ -203,8 +203,8 @@ namespace DuiLib
 		else if( _tcscmp(pstrName, _T("thumbsize")) == 0 ) {
 			SIZE szXY = {0};
 			LPTSTR pstr = NULL;
-			szXY.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-			szXY.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
+			szXY.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+			szXY.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
 			SetThumbSize(szXY);
 		}
 		else if( _tcscmp(pstrName, _T("step")) == 0 ) {

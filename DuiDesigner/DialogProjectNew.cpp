@@ -55,7 +55,7 @@ void CDialogProjectNew::OnBnClickedButtonBrowse()
 	ITEMIDLIST *pItem;
 	pItem = SHBrowseForFolder(&info);
 	if(pItem)
-	{  
+	{
 		TCHAR szPath[MAX_PATH]={0};
 		SHGetPathFromIDList(pItem, szPath);
 		GlobalFree(pItem);
@@ -76,16 +76,16 @@ int CALLBACK CDialogProjectNew::BrowseCallbackProc(HWND hwnd,UINT uMsg,LPARAM lP
 		}
 	case BFFM_SELCHANGED:
 		{
-			TCHAR curr[MAX_PATH];   
-			SHGetPathFromIDList((LPCITEMIDLIST)lParam, curr);   
-			::SendMessage(hwnd, BFFM_SETSTATUSTEXT,0, (LPARAM)curr);   
+			TCHAR curr[MAX_PATH];
+			SHGetPathFromIDList((LPCITEMIDLIST)lParam, curr);
+			::SendMessage(hwnd, BFFM_SETSTATUSTEXT,0, (LPARAM)curr);
 		}
 		break;
 	default:
 		break;
 	}
 
-	return 0;   
+	return 0;
 }
 
 void CDialogProjectNew::OnBnClickedOk()

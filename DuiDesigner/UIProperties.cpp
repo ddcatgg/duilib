@@ -1257,7 +1257,7 @@ void CUIProperties::ShowProperty(CControlUI* pControl)
 	case classSlider:
 		ShowSliderProperty(pControl);
 		break;
-	case classCombo: 
+	case classCombo:
 		ShowComboProperty(pControl);
 		break;
 	case classActiveX:

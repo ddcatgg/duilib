@@ -130,7 +130,7 @@ protected:
 	COLORREF m_clrHover;
 	COLORREF m_clrSelectedBorder;
 	COLORREF m_clrToolTab;
-	
+
 protected:
 	DECLARE_MESSAGE_MAP()
 public:

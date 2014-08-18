@@ -2,12 +2,12 @@
 
 namespace DuiLib {
 
-CControlUI::CControlUI() : 
-m_pManager(NULL), 
-m_pParent(NULL), 
+CControlUI::CControlUI() :
+m_pManager(NULL),
+m_pParent(NULL),
 m_bUpdateNeeded(true),
 m_bMenuUsed(false),
-m_bVisible(true), 
+m_bVisible(true),
 m_bInternVisible(true),
 m_bFocused(false),
 m_bEnabled(true),
@@ -217,7 +217,7 @@ void CControlUI::SetBorderSize(int nSize)
 // 函数名称: SetBorderSize
 // 返回类型: void
 // 参数信息: RECT rc
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetBorderSize( RECT rc )
 {
@@ -262,7 +262,7 @@ void CControlUI::SetPos(RECT rc)
         if( OnSize ) OnSize(this);
         m_bSetPos = false;
     }
-    
+
     if( m_bFloat ) {
         CControlUI* pParent = GetParent();
         if( pParent != NULL ) {
@@ -286,7 +286,7 @@ void CControlUI::SetPos(RECT rc)
     {
         rcTemp = invalidateRc;
         rcParent = pParent->GetPos();
-        if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) ) 
+        if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) )
         {
             return;
         }
@@ -345,7 +345,7 @@ int CControlUI::GetFixedWidth() const
 
 void CControlUI::SetFixedWidth(int cx)
 {
-    if( cx < 0 ) return; 
+    if( cx < 0 ) return;
     m_cxyFixed.cx = cx;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -358,7 +358,7 @@ int CControlUI::GetFixedHeight() const
 
 void CControlUI::SetFixedHeight(int cy)
 {
-    if( cy < 0 ) return; 
+    if( cy < 0 ) return;
     m_cxyFixed.cy = cy;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -373,7 +373,7 @@ void CControlUI::SetMinWidth(int cx)
 {
     if( m_cxyMin.cx == cx ) return;
 
-    if( cx < 0 ) return; 
+    if( cx < 0 ) return;
     m_cxyMin.cx = cx;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -388,7 +388,7 @@ void CControlUI::SetMaxWidth(int cx)
 {
     if( m_cxyMax.cx == cx ) return;
 
-    if( cx < 0 ) return; 
+    if( cx < 0 ) return;
     m_cxyMax.cx = cx;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -403,7 +403,7 @@ void CControlUI::SetMinHeight(int cy)
 {
     if( m_cxyMin.cy == cy ) return;
 
-    if( cy < 0 ) return; 
+    if( cy < 0 ) return;
     m_cxyMin.cy = cy;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -418,7 +418,7 @@ void CControlUI::SetMaxHeight(int cy)
 {
     if( m_cxyMax.cy == cy ) return;
 
-    if( cy < 0 ) return; 
+    if( cy < 0 ) return;
     m_cxyMax.cy = cy;
     if( !m_bFloat ) NeedParentUpdate();
     else NeedUpdate();
@@ -568,7 +568,7 @@ bool CControlUI::IsKeyboardEnabled() const
 }
 void CControlUI::SetKeyboardEnabled(bool bEnabled)
 {
-	m_bKeyboardEnabled = bEnabled ; 
+	m_bKeyboardEnabled = bEnabled ;
 }
 
 bool CControlUI::IsFocused() const
@@ -615,7 +615,7 @@ void CControlUI::Invalidate()
     {
         rcTemp = invalidateRc;
         rcParent = pParent->GetPos();
-        if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) ) 
+        if( !::IntersectRect(&invalidateRc, &rcTemp, &rcParent) )
         {
             return;
         }
@@ -682,13 +682,13 @@ void CControlUI::DoEvent(TEventUI& event)
         ::SetCursor(::LoadCursor(NULL, MAKEINTRESOURCE(IDC_ARROW)));
         return;
     }
-    if( event.Type == UIEVENT_SETFOCUS ) 
+    if( event.Type == UIEVENT_SETFOCUS )
     {
         m_bFocused = true;
         Invalidate();
         return;
     }
-    if( event.Type == UIEVENT_KILLFOCUS ) 
+    if( event.Type == UIEVENT_KILLFOCUS )
     {
         m_bFocused = false;
         Invalidate();
@@ -739,10 +739,10 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     if( _tcscmp(pstrName, _T("pos")) == 0 ) {
         RECT rcPos = { 0 };
         LPTSTR pstr = NULL;
-        rcPos.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        rcPos.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-        rcPos.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-        rcPos.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+        rcPos.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        rcPos.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+        rcPos.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+        rcPos.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
         SIZE szXY = {rcPos.left >= 0 ? rcPos.left : rcPos.right, rcPos.top >= 0 ? rcPos.top : rcPos.bottom};
         SetFixedXY(szXY);
         SetFixedWidth(rcPos.right - rcPos.left);
@@ -751,19 +751,19 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     else if( _tcscmp(pstrName, _T("relativepos")) == 0 ) {
         SIZE szMove,szZoom;
         LPTSTR pstr = NULL;
-        szMove.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        szMove.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-        szZoom.cx = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-        szZoom.cy = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr); 
+        szMove.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        szMove.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+        szZoom.cx = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+        szZoom.cy = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
         SetRelativePos(szMove,szZoom);
     }
     else if( _tcscmp(pstrName, _T("padding")) == 0 ) {
         RECT rcPadding = { 0 };
         LPTSTR pstr = NULL;
-        rcPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        rcPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-        rcPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-        rcPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+        rcPadding.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        rcPadding.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+        rcPadding.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+        rcPadding.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
         SetPadding(rcPadding);
     }
     else if( _tcscmp(pstrName, _T("bkcolor")) == 0 || _tcscmp(pstrName, _T("bkcolor1")) == 0 ) {
@@ -827,8 +827,8 @@ void CControlUI::SetAttribute(LPCTSTR pstrName, LPCTSTR pstrValue)
     else if( _tcscmp(pstrName, _T("borderround")) == 0 ) {
         SIZE cxyRound = { 0 };
         LPTSTR pstr = NULL;
-        cxyRound.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-        cxyRound.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);     
+        cxyRound.cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+        cxyRound.cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
         SetBorderRound(cxyRound);
     }
     else if( _tcscmp(pstrName, _T("bkimage")) == 0 ) SetBkImage(pstrValue);
@@ -923,7 +923,7 @@ void CControlUI::PaintBkColor(HDC hDC)
                 rc.bottom = m_rcItem.bottom;
                 CRenderEngine::DrawGradient(hDC, rc, GetAdjustColor(m_dwBackColor2), GetAdjustColor(m_dwBackColor3), true, 8);
             }
-            else 
+            else
                 CRenderEngine::DrawGradient(hDC, m_rcItem, GetAdjustColor(m_dwBackColor), GetAdjustColor(m_dwBackColor2), true, 16);
         }
         else if( m_dwBackColor >= 0xFF000000 ) CRenderEngine::DrawColor(hDC, m_rcPaint, GetAdjustColor(m_dwBackColor));
@@ -1001,7 +1001,7 @@ void CControlUI::DoPostPaint(HDC hDC, const RECT& rcPaint)
 //************************************
 // 函数名称: GetLeftBorderSize
 // 返回类型: int
-// 函数说明: 
+// 函数说明:
 //************************************
 int CControlUI::GetLeftBorderSize() const
 {
@@ -1012,7 +1012,7 @@ int CControlUI::GetLeftBorderSize() const
 // 函数名称: SetLeftBorderSize
 // 返回类型: void
 // 参数信息: int nSize
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetLeftBorderSize( int nSize )
 {
@@ -1023,7 +1023,7 @@ void CControlUI::SetLeftBorderSize( int nSize )
 //************************************
 // 函数名称: GetTopBorderSize
 // 返回类型: int
-// 函数说明: 
+// 函数说明:
 //************************************
 int CControlUI::GetTopBorderSize() const
 {
@@ -1034,7 +1034,7 @@ int CControlUI::GetTopBorderSize() const
 // 函数名称: SetTopBorderSize
 // 返回类型: void
 // 参数信息: int nSize
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetTopBorderSize( int nSize )
 {
@@ -1045,7 +1045,7 @@ void CControlUI::SetTopBorderSize( int nSize )
 //************************************
 // 函数名称: GetRightBorderSize
 // 返回类型: int
-// 函数说明: 
+// 函数说明:
 //************************************
 int CControlUI::GetRightBorderSize() const
 {
@@ -1056,7 +1056,7 @@ int CControlUI::GetRightBorderSize() const
 // 函数名称: SetRightBorderSize
 // 返回类型: void
 // 参数信息: int nSize
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetRightBorderSize( int nSize )
 {
@@ -1067,7 +1067,7 @@ void CControlUI::SetRightBorderSize( int nSize )
 //************************************
 // 函数名称: GetBottomBorderSize
 // 返回类型: int
-// 函数说明: 
+// 函数说明:
 //************************************
 int CControlUI::GetBottomBorderSize() const
 {
@@ -1078,7 +1078,7 @@ int CControlUI::GetBottomBorderSize() const
 // 函数名称: SetBottomBorderSize
 // 返回类型: void
 // 参数信息: int nSize
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetBottomBorderSize( int nSize )
 {
@@ -1089,7 +1089,7 @@ void CControlUI::SetBottomBorderSize( int nSize )
 //************************************
 // 函数名称: GetBorderStyle
 // 返回类型: int
-// 函数说明: 
+// 函数说明:
 //************************************
 int CControlUI::GetBorderStyle() const
 {
@@ -1100,7 +1100,7 @@ int CControlUI::GetBorderStyle() const
 // 函数名称: SetBorderStyle
 // 返回类型: void
 // 参数信息: int nStyle
-// 函数说明: 
+// 函数说明:
 //************************************
 void CControlUI::SetBorderStyle( int nStyle )
 {

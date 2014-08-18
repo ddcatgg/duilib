@@ -47,7 +47,7 @@ namespace DuiLib
 
 		// Determine the width of elements that are sizeable
 		SIZE szAvailable = { rc.right - rc.left, rc.bottom - rc.top };
-		if( m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsVisible() ) 
+		if( m_pHorizontalScrollBar && m_pHorizontalScrollBar->IsVisible() )
 			szAvailable.cx += m_pHorizontalScrollBar->GetScrollRange();
 
 		int nAdjustables = 0;

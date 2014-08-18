@@ -7,7 +7,7 @@ CDialogBuilder::CDialogBuilder() : m_pCallback(NULL), m_pstrtype(NULL)
 
 }
 
-CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback, 
+CControlUI* CDialogBuilder::Create(STRINGorID xml, LPCTSTR type, IDialogBuilderCallback* pCallback,
                                    CPaintManagerUI* pManager, CControlUI* pParent)
 {
 	//资源ID为0-65535，两个字节；字符串指针为4个字节
@@ -138,61 +138,61 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintMana
                     pstrValue = root.GetAttributeValue(i);
                     if( _tcscmp(pstrName, _T("size")) == 0 ) {
                         LPTSTR pstr = NULL;
-                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
+                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
                         pManager->SetInitSize(cx, cy);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("sizebox")) == 0 ) {
                         RECT rcSizeBox = { 0 };
                         LPTSTR pstr = NULL;
-                        rcSizeBox.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        rcSizeBox.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-                        rcSizeBox.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-                        rcSizeBox.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+                        rcSizeBox.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        rcSizeBox.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+                        rcSizeBox.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+                        rcSizeBox.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
                         pManager->SetSizeBox(rcSizeBox);
                     }
                     else if( _tcscmp(pstrName, _T("caption")) == 0 ) {
                         RECT rcCaption = { 0 };
                         LPTSTR pstr = NULL;
-                        rcCaption.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        rcCaption.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);    
-                        rcCaption.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);    
-                        rcCaption.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);    
+                        rcCaption.left = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        rcCaption.top = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
+                        rcCaption.right = _tcstol(pstr + 1, &pstr, 10);  ASSERT(pstr);
+                        rcCaption.bottom = _tcstol(pstr + 1, &pstr, 10); ASSERT(pstr);
                         pManager->SetCaptionRect(rcCaption);
                     }
                     else if( _tcscmp(pstrName, _T("roundcorner")) == 0 ) {
                         LPTSTR pstr = NULL;
-                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
+                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
                         pManager->SetRoundCorner(cx, cy);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("mininfo")) == 0 ) {
                         LPTSTR pstr = NULL;
-                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
+                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
                         pManager->SetMinInfo(cx, cy);
                     }
                     else if( _tcscmp(pstrName, _T("maxinfo")) == 0 ) {
                         LPTSTR pstr = NULL;
-                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);    
-                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr); 
+                        int cx = _tcstol(pstrValue, &pstr, 10);  ASSERT(pstr);
+                        int cy = _tcstol(pstr + 1, &pstr, 10);    ASSERT(pstr);
                         pManager->SetMaxInfo(cx, cy);
                     }
                     else if( _tcscmp(pstrName, _T("showdirty")) == 0 ) {
                         pManager->SetShowUpdateRect(_tcscmp(pstrValue, _T("true")) == 0);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("alpha")) == 0 ) {
                         pManager->SetTransparent(_ttoi(pstrValue));
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("bktrans")) == 0 ) {
                         pManager->SetBackgroundTransparent(_tcscmp(pstrValue, _T("true")) == 0);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("disabledfontcolor")) == 0 ) {
                         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
                         LPTSTR pstr = NULL;
                         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
                         pManager->SetDefaultDisabledColor(clrColor);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("defaultfontcolor")) == 0 ) {
                         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
                         LPTSTR pstr = NULL;
@@ -204,19 +204,19 @@ CControlUI* CDialogBuilder::Create(IDialogBuilderCallback* pCallback, CPaintMana
                         LPTSTR pstr = NULL;
                         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
                         pManager->SetDefaultLinkFontColor(clrColor);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("linkhoverfontcolor")) == 0 ) {
                         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
                         LPTSTR pstr = NULL;
                         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
                         pManager->SetDefaultLinkHoverFontColor(clrColor);
-                    } 
+                    }
                     else if( _tcscmp(pstrName, _T("selectedcolor")) == 0 ) {
                         if( *pstrValue == _T('#')) pstrValue = ::CharNext(pstrValue);
                         LPTSTR pstr = NULL;
                         DWORD clrColor = _tcstoul(pstrValue, &pstr, 16);
                         pManager->SetDefaultSelectedBkColor(clrColor);
-                    } 
+                    }
                 }
             }
         }
@@ -262,7 +262,7 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
             for ( int i = 0; i < count; i++ ) {
                 CDialogBuilder builder;
                 if( m_pstrtype != NULL ) { // 使用资源dll，从资源中读取
-                    WORD id = (WORD)_tcstol(szValue, &pstr, 10); 
+                    WORD id = (WORD)_tcstol(szValue, &pstr, 10);
                     pControl = builder.Create((UINT)id, m_pstrtype, m_pCallback, pManager, pParent);
                 }
                 else {
@@ -358,7 +358,7 @@ CControlUI* CDialogBuilder::_Parse(CMarkupNode* pRoot, CControlUI* pParent, CPai
             case 9:
                 if( _tcscmp(pstrClass, DUI_CTR_CONTAINER) == 0 )              pControl = new CContainerUI;
                 else if( _tcscmp(pstrClass, DUI_CTR_TABLAYOUT) == 0 )         pControl = new CTabLayoutUI;
-                else if( _tcscmp(pstrClass, DUI_CTR_SCROLLBAR) == 0 )         pControl = new CScrollBarUI; 
+                else if( _tcscmp(pstrClass, DUI_CTR_SCROLLBAR) == 0 )         pControl = new CScrollBarUI;
                 break;
             case 10:
                 if( _tcscmp(pstrClass, DUI_CTR_LISTHEADER) == 0 )             pControl = new CListHeaderUI;

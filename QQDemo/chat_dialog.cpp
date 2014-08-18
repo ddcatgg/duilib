@@ -68,7 +68,7 @@ CControlUI* ChatDialog::CreateControl(LPCTSTR pstrClass)
 void ChatDialog::OnFinalMessage(HWND hWnd)
 {
 	RemoveObserver();
-	WindowImplBase::OnFinalMessage(hWnd);	
+	WindowImplBase::OnFinalMessage(hWnd);
 	delete this;
 }
 
@@ -134,7 +134,7 @@ LRESULT ChatDialog::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kRestoreButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
 		}
-		else 
+		else
 		{
 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kMaxButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
@@ -369,7 +369,7 @@ void ChatDialog::Notify(TNotifyUI& msg)
             SendMsg();
 		}
 	}
-    else if( _tcsicmp(msg.sType, _T("return")) == 0 ) 
+    else if( _tcsicmp(msg.sType, _T("return")) == 0 )
     {
         if (_tcsicmp(msg.pSender->GetName(), kInputRichEditControlName) == 0)
         {

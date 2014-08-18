@@ -36,27 +36,27 @@ public:
         Node() : _parent (NULL) {}
         explicit Node(NodeData t) : _data (t), _parent (NULL) {}
         Node(NodeData t, Node* parent)	: _data (t), _parent (parent) {}
-        ~Node() 
+        ~Node()
         {
             for (int i = 0; i < num_children(); i++)
-                delete _children[i]; 
+                delete _children[i];
         }
-        NodeData& data() { return _data; }	
+        NodeData& data() { return _data; }
         int num_children() const { return _children.size(); }
         Node* child(int i)	{ return _children[i]; }
         Node* parent() { return ( _parent);	}
         bool has_children() const {	return num_children() > 0; }
-        void add_child(Node* child) 
+        void add_child(Node* child)
         {
-            child->set_parent(this); 
-            _children.push_back(child); 
+            child->set_parent(this);
+            _children.push_back(child);
         }
         void remove_child(Node* child)
         {
             Children::iterator iter = _children.begin();
             for( ; iter < _children.end(); ++iter )
             {
-                if( *iter == child ) 
+                if( *iter == child )
                 {
                     _children.erase(iter);
                     return;
@@ -71,7 +71,7 @@ public:
             }
             else return this;
         }
-    };	
+    };
 
     GameListUI() : _root(NULL), m_dwDelayDeltaY(0), m_dwDelayNum(0), m_dwDelayLeft(0)
     {
@@ -147,7 +147,7 @@ public:
         CControlUI::SetInternVisible(bVisible);
     }
 
-    void DoEvent(TEventUI& event) 
+    void DoEvent(TEventUI& event)
     {
         if( !IsMouseEnabled() && event.Type > UIEVENT__MOUSEBEGIN && event.Type < UIEVENT__MOUSEEND ) {
             if( m_pParent != NULL ) m_pParent->DoEvent(event);
@@ -328,7 +328,7 @@ public:
         CDialogBuilder builder;
         CContainerUI* pDesk = static_cast<CContainerUI*>(builder.Create(_T("desk.xml"), (UINT)0));
         if( pDesk != NULL ) {
-            for(int i = 0; i < 500; ++i) 
+            for(int i = 0; i < 500; ++i)
             {
                 if( pDesk == NULL ) pDesk = static_cast<CContainerUI*>(builder.Create());
                 if( pDesk != NULL ) {
@@ -348,7 +348,7 @@ public:
         }
     }
 
-    void DoEvent(TEventUI& event) 
+    void DoEvent(TEventUI& event)
     {
         if( !IsMouseEnabled() && event.Type > UIEVENT__MOUSEBEGIN && event.Type < UIEVENT__MOUSEEND ) {
             if( m_pParent != NULL ) m_pParent->DoEvent(event);
@@ -406,7 +406,7 @@ public:
                     m_dwDelayNum = (DWORD)sqrt((double)abs(m_dwDelayDeltaY)) * 5;
                     m_dwDelayLeft = m_dwDelayNum;
                 }
-                else 
+                else
                     m_pManager->KillTimer(this, SCROLL_TIMERID);
             }
             return;
@@ -447,7 +447,7 @@ private:
 class CDialogBuilderCallbackEx : public IDialogBuilderCallback
 {
 public:
-    CControlUI* CreateControl(LPCTSTR pstrClass) 
+    CControlUI* CreateControl(LPCTSTR pstrClass)
     {
         if( _tcscmp(pstrClass, _T("GameList")) == 0 ) return new GameListUI;
         else if( _tcscmp(pstrClass, _T("DeskList")) == 0 ) return new DeskListUI;

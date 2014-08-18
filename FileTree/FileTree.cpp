@@ -15,12 +15,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR 
 
 	HRESULT Hr = ::CoInitialize(NULL);
 	if( FAILED(Hr) ) return 0;
-	
+
 	MainDialog* pFrame = new MainDialog();
-	if( pFrame == NULL ) 
+	if( pFrame == NULL )
 		return 0;
 
-	pFrame->Create(NULL, _T("TokenControl"), 
+	pFrame->Create(NULL, _T("TokenControl"),
 		UI_WNDSTYLE_FRAME,
 		UI_WNDSTYLE_EX_FRAME, 0, 0, 300, 500);
 

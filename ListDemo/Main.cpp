@@ -55,22 +55,22 @@ public:
     ListMainForm() {
     };
 
-    LPCTSTR GetWindowClassName() const 
-    { 
-        return _T("ScanMainForm"); 
+    LPCTSTR GetWindowClassName() const
+    {
+        return _T("ScanMainForm");
     };
 
     UINT GetClassStyle() const
-    { 
-        return CS_DBLCLKS; 
+    {
+        return CS_DBLCLKS;
     };
 
-    void OnFinalMessage(HWND /*hWnd*/) 
-    { 
+    void OnFinalMessage(HWND /*hWnd*/)
+    {
         delete this;
     };
 
-    void Init() 
+    void Init()
     {
         m_pCloseBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("closebtn")));
         m_pMaxBtn = static_cast<CButtonUI*>(m_pm.FindControl(_T("maxbtn")));
@@ -79,7 +79,7 @@ public:
         m_pSearch = static_cast<CButtonUI*>(m_pm.FindControl(_T("btn")));
     }
 
-    void OnPrepare(TNotifyUI& msg) 
+    void OnPrepare(TNotifyUI& msg)
     {
 
     }
@@ -162,7 +162,7 @@ public:
             break;
         case 1:
             {
-#ifdef _UNICODE		
+#ifdef _UNICODE
             int iLen = domain[iIndex].length();
             LPWSTR lpText = new WCHAR[iLen + 1];
             ::ZeroMemory(lpText, (iLen + 1) * sizeof(WCHAR));
@@ -176,7 +176,7 @@ public:
             break;
         case 2:
             {
-#ifdef _UNICODE		
+#ifdef _UNICODE
             int iLen = desc[iIndex].length();
             LPWSTR lpText = new WCHAR[iLen + 1];
             ::ZeroMemory(lpText, (iLen + 1) * sizeof(WCHAR));
@@ -195,27 +195,27 @@ public:
 
     void Notify(TNotifyUI& msg)
     {
-        if( msg.sType == _T("windowinit") ) 
+        if( msg.sType == _T("windowinit") )
             OnPrepare(msg);
-        else if( msg.sType == _T("click") ) 
+        else if( msg.sType == _T("click") )
         {
-            if( msg.pSender == m_pCloseBtn ) 
+            if( msg.pSender == m_pCloseBtn )
             {
                 PostQuitMessage(0);
-                return; 
+                return;
             }
-            else if( msg.pSender == m_pMinBtn ) 
-            { 
+            else if( msg.pSender == m_pMinBtn )
+            {
                 SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
-                return; 
+                return;
             }
-            else if( msg.pSender == m_pMaxBtn ) 
-            { 
-                SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); return; 
+            else if( msg.pSender == m_pMaxBtn )
+            {
+                SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); return;
             }
-            else if( msg.pSender == m_pRestoreBtn ) 
-            { 
-                SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0); return; 
+            else if( msg.pSender == m_pRestoreBtn )
+            {
+                SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0); return;
             }
             else if(msg.pSender == m_pSearch)
             {
@@ -225,14 +225,14 @@ public:
         else if(msg.sType==_T("setfocus"))
         {
         }
-        else if( msg.sType == _T("itemclick") ) 
+        else if( msg.sType == _T("itemclick") )
         {
         }
-        else if( msg.sType == _T("itemactivate") ) 
+        else if( msg.sType == _T("itemactivate") )
         {
             int iIndex = msg.pSender->GetTag();
             CDuiString sMessage = _T("Click: ");;
-#ifdef _UNICODE		
+#ifdef _UNICODE
             int iLen = domain[iIndex].length();
             LPWSTR lpText = new WCHAR[iLen + 1];
             ::ZeroMemory(lpText, (iLen + 1) * sizeof(WCHAR));
@@ -245,7 +245,7 @@ public:
 #endif
             ::MessageBox(NULL, sMessage.GetData(), _T("ÌבÊ¾(by tojen)"), MB_OK);
         }
-        else if(msg.sType == _T("menu")) 
+        else if(msg.sType == _T("menu"))
         {
             if( msg.pSender->GetName() != _T("domainlist") ) return;
             CMenuWnd* pMenu = new CMenuWnd();
@@ -260,7 +260,7 @@ public:
             if( nSel < 0 ) return;
             pList->RemoveAt(nSel);
             domain.erase(domain.begin() + nSel);
-            desc.erase(desc.begin() + nSel);   
+            desc.erase(desc.begin() + nSel);
         }
     }
 
@@ -345,7 +345,7 @@ public:
         if( pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right \
             && pt.y >= rcCaption.top && pt.y < rcCaption.bottom ) {
                 CControlUI* pControl = static_cast<CControlUI*>(m_pm.FindControl(pt));
-                if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 && 
+                if( pControl && _tcscmp(pControl->GetClass(), _T("ButtonUI")) != 0 &&
                     _tcscmp(pControl->GetClass(), _T("OptionUI")) != 0 &&
                     _tcscmp(pControl->GetClass(), _T("TextUI")) != 0 )
                     return HTCAPTION;

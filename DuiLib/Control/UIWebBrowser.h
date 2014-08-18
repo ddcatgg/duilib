@@ -103,7 +103,7 @@ namespace DuiLib
 		virtual HRESULT STDMETHODCALLTYPE Exec( __RPC__in_opt const GUID *pguidCmdGroup, DWORD nCmdID, DWORD nCmdexecopt, __RPC__in_opt VARIANT *pvaIn, __RPC__inout_opt VARIANT *pvaOut );
 
 		// IDownloadManager
-		STDMETHOD(Download)( 
+		STDMETHOD(Download)(
 			/* [in] */ IMoniker *pmk,
 			/* [in] */ IBindCtx *pbc,
 			/* [in] */ DWORD dwBindVerb,

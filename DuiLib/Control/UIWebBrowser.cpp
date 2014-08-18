@@ -137,14 +137,14 @@ STDMETHODIMP DuiLib::CWebBrowserUI::QueryInterface( REFIID riid, LPVOID *ppvObje
 
 STDMETHODIMP_(ULONG) DuiLib::CWebBrowserUI::AddRef()
 {
-	InterlockedIncrement(&m_dwRef); 
+	InterlockedIncrement(&m_dwRef);
 	return m_dwRef;
 }
 
 STDMETHODIMP_(ULONG) DuiLib::CWebBrowserUI::Release()
 {
 	ULONG ulRefCount = InterlockedDecrement(&m_dwRef);
-	return ulRefCount; 
+	return ulRefCount;
 }
 
 void DuiLib::CWebBrowserUI::Navigate2( LPCTSTR lpszUrl )
@@ -201,14 +201,14 @@ void DuiLib::CWebBrowserUI::NavigateError( IDispatch *pDisp,VARIANT * &url,VARIA
 
 void DuiLib::CWebBrowserUI::NavigateComplete2( IDispatch *pDisp,VARIANT *&url )
 {
-	CComPtr<IDispatch> spDoc;   
-	m_pWebBrowser2->get_Document(&spDoc);   
+	CComPtr<IDispatch> spDoc;
+	m_pWebBrowser2->get_Document(&spDoc);
 
 	if (spDoc)
-	{   
-		CComQIPtr<ICustomDoc, &IID_ICustomDoc> spCustomDoc(spDoc);   
-		if (spCustomDoc)   
-			spCustomDoc->SetUIHandler(this);   
+	{
+		CComQIPtr<ICustomDoc, &IID_ICustomDoc> spCustomDoc(spDoc);
+		if (spCustomDoc)
+			spCustomDoc->SetUIHandler(this);
 	}
 
 	if (m_pWebBrowserEventHandler)
@@ -541,7 +541,7 @@ HRESULT DuiLib::CWebBrowserUI::RegisterEventHandler( BOOL inAdvise )
 	{
 		hr = pCP->Unadvise(m_dwCookie);
 	}
-	return hr; 
+	return hr;
 }
 
 DISPID DuiLib::CWebBrowserUI::FindId( IDispatch *pObj, LPOLESTR pName )
@@ -639,7 +639,7 @@ HRESULT STDMETHODCALLTYPE DuiLib::CWebBrowserUI::Exec( __RPC__in_opt const GUID 
 	if (pguidCmdGroup && IsEqualGUID(*pguidCmdGroup, CGID_DocHostCommandHandler))
 	{
 
-		switch (nCmdID) 
+		switch (nCmdID)
 		{
 
 		case OLECMDID_SHOWSCRIPTERROR:
@@ -647,8 +647,8 @@ HRESULT STDMETHODCALLTYPE DuiLib::CWebBrowserUI::Exec( __RPC__in_opt const GUID 
 				IHTMLDocument2*             pDoc = NULL;
 				IHTMLWindow2*               pWindow = NULL;
 				IHTMLEventObj*              pEventObj = NULL;
-				BSTR                        rgwszNames[5] = 
-				{ 
+				BSTR                        rgwszNames[5] =
+				{
 					SysAllocString(L"errorLine"),
 					SysAllocString(L"errorCharacter"),
 					SysAllocString(L"errorCode"),
@@ -665,17 +665,17 @@ HRESULT STDMETHODCALLTYPE DuiLib::CWebBrowserUI::Exec( __RPC__in_opt const GUID 
 				params.cNamedArgs = 0;
 
 				// Get the document that is currently being viewed.
-				hr = pvaIn->punkVal->QueryInterface(IID_IHTMLDocument2, (void **) &pDoc);    
+				hr = pvaIn->punkVal->QueryInterface(IID_IHTMLDocument2, (void **) &pDoc);
 				// Get document.parentWindow.
 				hr = pDoc->get_parentWindow(&pWindow);
 				pDoc->Release();
 				// Get the window.event object.
 				hr = pWindow->get_event(&pEventObj);
 				// Get the error info from the window.event object.
-				for (i = 0; i < 5; i++) 
-				{  
+				for (i = 0; i < 5; i++)
+				{
 					// Get the property's dispID.
-					hr = pEventObj->GetIDsOfNames(IID_NULL, &rgwszNames[i], 1, 
+					hr = pEventObj->GetIDsOfNames(IID_NULL, &rgwszNames[i], 1,
 						LOCALE_SYSTEM_DEFAULT, &rgDispIDs[i]);
 					// Get the value of the property.
 					hr = pEventObj->Invoke(rgDispIDs[i], IID_NULL,
@@ -685,7 +685,7 @@ HRESULT STDMETHODCALLTYPE DuiLib::CWebBrowserUI::Exec( __RPC__in_opt const GUID 
 					SysFreeString(rgwszNames[i]);
 				}
 
-				// At this point, you would normally alert the user with 
+				// At this point, you would normally alert the user with
 				// the information about the error, which is now contained
 				// in rgvaEventInfo[]. Or, you could just exit silently.
 
@@ -698,8 +698,8 @@ HRESULT STDMETHODCALLTYPE DuiLib::CWebBrowserUI::Exec( __RPC__in_opt const GUID 
 				else
 				{
 					// Stop running scripts on the page.
-					(*pvaOut).boolVal = VARIANT_FALSE;   
-				} 
+					(*pvaOut).boolVal = VARIANT_FALSE;
+				}
 				break;
 			}
 		default:

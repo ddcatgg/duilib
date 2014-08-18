@@ -111,7 +111,7 @@ LRESULT MainFrame::OnSysCommand(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& b
 			pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kRestoreButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
 		}
-		else 
+		else
 		{
 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(kMaxButtonControlName));
 			if( pControl ) pControl->SetVisible(true);
@@ -197,7 +197,7 @@ void MainFrame::UpdateFriendsList()
 		friends_.push_back(item);
 
 		item.id = _T("1");
-		item.folder = false;		
+		item.folder = false;
 		item.logo = _T("man.png");
 		item.nick_name = _T("tojen");
 		item.description = _T("tojen.me@gmail.com");

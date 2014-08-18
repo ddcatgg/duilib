@@ -31,7 +31,7 @@ namespace DuiLib
 		{
 			return S_OK;
 		}
-		
+
 		virtual HRESULT FlashCall ( LPCTSTR request )
 		{
 			return S_OK;

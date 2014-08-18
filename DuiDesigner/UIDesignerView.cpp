@@ -315,7 +315,7 @@ void CUIDesignerView::OnLButtonDown(UINT nFlags, CPoint point)
 		g_pPropertiesWnd->ShowProperty(m_MultiTracker.GetFocused());
 	else
 		g_pPropertiesWnd->ShowProperty(NULL);
-	
+
 	this->Invalidate(FALSE);
 
 // 	__super::OnLButtonDown(nFlags, point);
@@ -610,7 +610,7 @@ void CUIDesignerView::OnFormEditTest()
 	::GetTempFileName(strFilePath, _T("Dui"), 0, szFileName);
 
 	this->SaveSkinFile(szFileName);
-	
+
 	m_LayoutManager.TestForm(szFileName);
 }
 
@@ -1102,7 +1102,7 @@ void CUIDesignerView::ShowPropertyDialog(CControlUI* pControl)
 		break;
 	case classSlider:
 		break;
-	case classCombo: 
+	case classCombo:
 		break;
 	case classActiveX:
 		break;

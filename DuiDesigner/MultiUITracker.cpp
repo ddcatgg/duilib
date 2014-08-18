@@ -61,7 +61,7 @@ void CUITracker::Init()
 	m_hHandleBrush=CreateSolidBrush(m_clrHandleBackground);
 	m_hMoveHandleBitmap=(HBITMAP)::LoadImage(::AfxGetResourceHandle(),MAKEINTRESOURCE(IDB_BITMAP_MOVEHANDLE),
 		IMAGE_BITMAP,0,0,0);
-	BITMAP bm; 
+	BITMAP bm;
 	GetObject(m_hMoveHandleBitmap,sizeof(BITMAP),(LPBYTE)&bm);
 
 	m_nMask=0xFF;
@@ -771,7 +771,7 @@ CTrackerElement::~CTrackerElement(void)
 
 }
 
-const RECT& CTrackerElement::GetPos() const 
+const RECT& CTrackerElement::GetPos() const
 {
 	ASSERT(m_pControl);
 

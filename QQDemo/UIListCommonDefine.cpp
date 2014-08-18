@@ -28,10 +28,10 @@ Node::Node(NodeData t, Node* parent)
 , parent_ (parent)
 {}
 
-Node::~Node() 
+Node::~Node()
 {
 	for (int i = 0; i < num_children(); ++i)
-		delete children_[i]; 
+		delete children_[i];
 }
 
 NodeData& Node::data()
@@ -66,8 +66,8 @@ bool Node::folder() const
 
 void Node::add_child(Node* child)
 {
-	child->set_parent(this); 
-	children_.push_back(child); 
+	child->set_parent(this);
+	children_.push_back(child);
 }
 
 
@@ -76,7 +76,7 @@ void Node::remove_child(Node* child)
 	Children::iterator iter = children_.begin();
 	for (; iter < children_.end(); ++iter)
 	{
-		if (*iter == child) 
+		if (*iter == child)
 		{
 			children_.erase(iter);
 			return;

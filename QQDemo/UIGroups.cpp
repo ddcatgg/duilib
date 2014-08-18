@@ -103,7 +103,7 @@ void CGroupsUI::RemoveAll()
 	root_node_->data().list_elment_ = NULL;
 }
 
-void CGroupsUI::DoEvent(TEventUI& event) 
+void CGroupsUI::DoEvent(TEventUI& event)
 {
 	if (!IsMouseEnabled() && event.Type > UIEVENT__MOUSEBEGIN && event.Type < UIEVENT__MOUSEEND)
 	{
@@ -231,7 +231,7 @@ Node* CGroupsUI::AddNode(const GroupsListItemInfo& item, Node* parent)
 	CDuiRect rcPadding = text_padding_;
 	for (int i = 0; i < node->data().level_; ++i)
 	{
-		rcPadding.left += level_text_start_pos_;		
+		rcPadding.left += level_text_start_pos_;
 	}
 	pListElement->SetPadding(rcPadding);
 
@@ -320,7 +320,7 @@ Node* CGroupsUI::AddNode(const GroupsListItemInfo& item, Node* parent)
 		Node* prev = parent->get_last_child();
 		index = prev->data().list_elment_->GetIndex() + 1;
 	}
-	else 
+	else
 	{
 		if (parent == root_node_)
 			index = 0;
@@ -404,7 +404,7 @@ void CGroupsUI::SetChildVisible(Node* node, bool visible)
 		CControlUI* control = GetItemAt(i);
 		if (_tcsicmp(control->GetClass(), _T("ListContainerElementUI")) == 0)
 		{
-			if (visible) 
+			if (visible)
 			{
 				Node* local_parent = ((Node*)control->GetTag())->parent();
 				if (local_parent->data().child_visible_ && local_parent->data().list_elment_->IsVisible())

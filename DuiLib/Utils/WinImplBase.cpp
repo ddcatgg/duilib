@@ -139,7 +139,7 @@ LRESULT WindowImplBase::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 
 	RECT rcClient;
 	::GetClientRect(*this, &rcClient);
-	
+
 	if( !::IsZoomed(*this) )
 	{
 		RECT rcSizeBox = m_PaintManager.GetSizeBox();
@@ -164,7 +164,7 @@ LRESULT WindowImplBase::OnNcHitTest(UINT uMsg, WPARAM wParam, LPARAM lParam, BOO
 	if( pt.x >= rcClient.left + rcCaption.left && pt.x < rcClient.right - rcCaption.right \
 		&& pt.y >= rcCaption.top && pt.y < rcCaption.bottom ) {
 			CControlUI* pControl = static_cast<CControlUI*>(m_PaintManager.FindControl(pt));
-			if( pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 && 
+			if( pControl && _tcsicmp(pControl->GetClass(), _T("ButtonUI")) != 0 &&
 				_tcsicmp(pControl->GetClass(), _T("OptionUI")) != 0 &&
 				_tcsicmp(pControl->GetClass(), _T("TextUI")) != 0 )
 				return HTCAPTION;
@@ -285,7 +285,7 @@ LRESULT WindowImplBase::OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& 
 				return 0L;
 			DWORD dwSize = 0;
 			HGLOBAL hGlobal = ::LoadResource(m_PaintManager.GetResourceDll(), hResource);
-			if( hGlobal == NULL ) 
+			if( hGlobal == NULL )
 			{
 #if defined(WIN32) && !defined(UNDER_CE)
 				::FreeResource(hResource);
@@ -426,22 +426,22 @@ void WindowImplBase::OnClick(TNotifyUI& msg)
 	if( sCtrlName == _T("closebtn") )
 	{
 		Close();
-		return; 
+		return;
 	}
 	else if( sCtrlName == _T("minbtn"))
-	{ 
-		SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0); 
-		return; 
+	{
+		SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
+		return;
 	}
 	else if( sCtrlName == _T("maxbtn"))
-	{ 
-		SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0); 
-		return; 
+	{
+		SendMessage(WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+		return;
 	}
 	else if( sCtrlName == _T("restorebtn"))
-	{ 
-		SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0); 
-		return; 
+	{
+		SendMessage(WM_SYSCOMMAND, SC_RESTORE, 0);
+		return;
 	}
 	return;
 }

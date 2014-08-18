@@ -12,12 +12,12 @@ typedef struct tagHOOKSTRUCT
 }HOOKSTRUCT;
 
 typedef HANDLE (WINAPI *pfnCreateFile)(
-									 LPCTSTR lpFileName, 
-									 DWORD dwDesiredAccess, 
-									 DWORD dwShareMode, 
-									 LPSECURITY_ATTRIBUTES lpSecurityAttributes, 
-									 DWORD dwCreationDisposition, 
-									 DWORD dwFlagsAndAttributes, 
+									 LPCTSTR lpFileName,
+									 DWORD dwDesiredAccess,
+									 DWORD dwShareMode,
+									 LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+									 DWORD dwCreationDisposition,
+									 DWORD dwFlagsAndAttributes,
 									 HANDLE hTemplateFile
 							   );
 typedef void (WINAPI *pfnInvalidate)(RECT& rcItem);
@@ -36,12 +36,12 @@ public:
 
 public:
 	static HANDLE WINAPI Hook_CreateFile(
-		LPCTSTR lpFileName, 
-		DWORD dwDesiredAccess, 
-		DWORD dwShareMode, 
-		LPSECURITY_ATTRIBUTES lpSecurityAttributes, 
-		DWORD dwCreationDisposition, 
-		DWORD dwFlagsAndAttributes, 
+		LPCTSTR lpFileName,
+		DWORD dwDesiredAccess,
+		DWORD dwShareMode,
+		LPSECURITY_ATTRIBUTES lpSecurityAttributes,
+		DWORD dwCreationDisposition,
+		DWORD dwFlagsAndAttributes,
 		HANDLE hTemplateFile
 		);
 	static void EnableCreateFile(bool bEnable=true) { m_bCreateFileEnabled=bEnable; }

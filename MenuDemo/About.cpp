@@ -28,8 +28,8 @@ CAbout::~CAbout(void)
 {
 }
 
-LPCTSTR CAbout::GetWindowClassName() const 
-{ 
+LPCTSTR CAbout::GetWindowClassName() const
+{
 	return _T("AboutWindow");
 }
 
@@ -53,13 +53,13 @@ void CAbout::Notify(TNotifyUI& msg)
 	{
 
 	}
-	else if( msg.sType == _T("click") ) 
+	else if( msg.sType == _T("click") )
 	{
 
 		if (_tcsicmp(msg.pSender->GetName(), kCloseButtonControlName) == 0)
 		{
 			Close();
-			return; 
+			return;
 		}
 	}
 }
@@ -129,14 +129,14 @@ void CAbout::SetBkImage(LPCTSTR szImageName)
 LRESULT CAbout::OnMouseMove(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled)
 {
 
-	POINT pt; 
+	POINT pt;
 
 	pt.x = GET_X_LPARAM(lParam); pt.y = GET_Y_LPARAM(lParam);
 
 	RECT btnRect;
 
 	CButtonUI* linkbtn;
-	
+
 	linkbtn = (CButtonUI*)m_PaintManager.FindControl(_T("www.131qz.com"));
 
 	if (linkbtn != NULL)

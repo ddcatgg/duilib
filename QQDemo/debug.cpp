@@ -4,7 +4,7 @@
 
 #if defined(DBG_THREADSAFE)
 
-class OS_CLockable 
+class OS_CLockable
 {
 public:
 	// ## Constructor / Destructor
@@ -46,7 +46,7 @@ private:
 
 	OS_CLockable (const OS_CLockable&);
 	OS_CLockable& operator= (const OS_CLockable&);
-}; 
+};
 
 // ............................................................................
 // CLASS NAME: OS_CAutoLock
@@ -175,7 +175,7 @@ BOOL DbgPrint(__in LPCTSTR lpszFormatString, ...)
 #endif
 		if (!s_bLogPathInit)
 		{
-			SYSTEMTIME stime = {0};			
+			SYSTEMTIME stime = {0};
 			GetLocalTime(&stime);
 #if defined(UNDER_CE)
 			_stprintf(s_szLogFile, _T("%s\\log_%04d%02d%02d_%d.log"), g_bLogSavePath, stime.wYear, stime.wMonth, stime.wDay, GetTickCount());
@@ -194,7 +194,7 @@ BOOL DbgPrint(__in LPCTSTR lpszFormatString, ...)
 			{
 				fclose(pFile);
 				{
-					SYSTEMTIME stime = {0};			
+					SYSTEMTIME stime = {0};
 					GetLocalTime(&stime);
 #if defined(UNDER_CE)
 					_stprintf(s_szLogFile, _T("%s\\log_%04d%02d%02d_%d.log"), g_bLogSavePath, stime.wYear, stime.wMonth, stime.wDay, GetTickCount());

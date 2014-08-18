@@ -10,32 +10,32 @@ class MainDialog : public CWindowWnd, public INotifyUI,public IDialogBuilderCall
 {
 public:
 
-    MainDialog():m_dwSkinNo(0) 
+    MainDialog():m_dwSkinNo(0)
 	{
     };
 
-    LPCTSTR GetWindowClassName() const 
-    { 
-        return _T("MainDialog"); 
+    LPCTSTR GetWindowClassName() const
+    {
+        return _T("MainDialog");
     };
 
     UINT GetClassStyle() const
-    { 
-        return CS_DBLCLKS; 
+    {
+        return CS_DBLCLKS;
     };
 
-    void OnFinalMessage(HWND /*hWnd*/) 
-    { 
+    void OnFinalMessage(HWND /*hWnd*/)
+    {
         delete this;
     };
-	CControlUI* CreateControl(LPCTSTR pstrClass) 
+	CControlUI* CreateControl(LPCTSTR pstrClass)
 	{
 		return NULL;
 	};
 	CDuiString GetNowTimeString()
 	{
 		SYSTEMTIME time = {0};
-		
+
 		TCHAR szTime[MAX_PATH] = {0};
 		::GetLocalTime(&time);
 		//_stprintf_s( szTime, MAX_PATH, _T("%04d/%02d/%02d %02d:%02d:%02d"), time.wYear, time.wMonth, time.wDay, time.wHour, time.wMinute, time.wSecond);
@@ -44,14 +44,14 @@ public:
 	};
 	void Init();
 
-    void OnPrepare(TNotifyUI& msg) 
+    void OnPrepare(TNotifyUI& msg)
     {
 
     };
 	void Notify(TNotifyUI& msg);
 
 	LRESULT OnMessage(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
-	
+
     LRESULT OnCreate(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
 
     LRESULT OnClose(UINT uMsg, WPARAM wParam, LPARAM lParam, BOOL& bHandled);
@@ -75,7 +75,7 @@ public:
     LRESULT HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam);
 public:
     CPaintManagerUI m_pm;
-	
+
 
 private:
     CButtonUI* m_pCloseBtn;
